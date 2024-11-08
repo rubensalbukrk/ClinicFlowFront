@@ -1,9 +1,11 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: [],
+module.exports = {
+  content: [
+    './index.html', // Se você usa o index.html do Vite
+    './src/**/*.{js,ts,jsx,tsx}', // Certifique-se de incluir esses caminhos
+  ],
   theme: {
     extend: {},
   },
   plugins: [],
 }
-
