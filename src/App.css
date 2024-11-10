@@ -3,6 +3,8 @@
   max-height: screen;
   margin: 0 auto;
   text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
 }
 
 @keyframes logo-spin {

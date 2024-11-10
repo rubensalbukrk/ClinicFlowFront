@@ -7,8 +7,8 @@ import Box from "../../components/Box/box";
 const Home: React.FC = () => {
   return (
     <Container>
-      <h1 className="text-6xl my-8">HOME</h1>
-
+      <h1 className="text-6xl font-serif mt-8">Whereas recognition of the inherent dignity</h1>
+      <h1 className="text-6xl ">Whereas recognition of the inherent dignity</h1>
       <Box size="small">
         <Text text="Está preparado para conhecer nossos melhores planos?"
         variant="small"

@@ -22,12 +22,13 @@ type BoxProps = {
     children: React.ReactNode;
     size: SizeProps;
     direction?: DirectionProps;
+    className?: string;
 }
 
-const Box: React.FC<BoxProps> = ({ children, size = "medium", direction = "col" }) => {
-    const style = `${directionBox[direction]} ${sizeBox[size]} bg-white py-4 px-4 shadow-black/20 shadow-xl rounded-lg`
+const Box: React.FC<BoxProps> = ({ children, size = "medium", direction = "col", className}) => {
+    const style = `${directionBox[direction]} ${sizeBox[size]} bg-white py-4 px-4 shadow-black/20 shadow-xl rounded-lg `
  return (
-    <div className={style}>
+    <div className={`${style}` + `${className}`}>
         {children}
     </div>
  );

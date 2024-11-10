@@ -1,8 +1,11 @@
+import { ButtonHTMLAttributes } from "react";
+
 type ButtonProps = {
     title: string;
     onClick: React.MouseEventHandler;
     variant: sizeProps;
     color?: colorProps;
+    className?: ButtonHTMLAttributes<HTMLButtonElement> | string
 }
 
 type sizeProps = keyof typeof sizes;
@@ -19,8 +22,8 @@ const colors = {
     default: 'bg-sky-400',
 };
 
-const Button = ({title, onClick, variant, color = "default"}: ButtonProps) => {
-    const style = `${sizes[variant]} ${colors[color]} my-4 self-center text-white rounded-lg`
+const Button = ({className, title, onClick, variant, color = "default"}: ButtonProps) => {
+    const style = `${sizes[variant]} ${colors[color]} my-4 self-center text-white rounded-lg ${className}`
  return (
     <button
     className={`${style}`}
