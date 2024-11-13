@@ -38,7 +38,10 @@ const Auth: React.FC = () => {
 
   return (
     <Container direction="col" className="px-8">
-      <Box size="w-full" direction="col">
+      <Box size="w-full" direction="col"
+      className="sm:items-center"
+      >
+
         <Text
           size="big"
           color="secundary"

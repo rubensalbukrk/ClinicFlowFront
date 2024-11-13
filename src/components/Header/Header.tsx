@@ -35,6 +35,10 @@ const Header = () => {
           Serviços
         </a>
 
+        <a className="cursor-pointer" onClick={() => navigation("/services")}>
+          Especialistas
+        </a>
+        
         <a
           className="cursor-pointer"
           onClick={() => navigation("/appointments")}
