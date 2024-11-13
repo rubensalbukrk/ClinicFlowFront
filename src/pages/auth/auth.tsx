@@ -96,7 +96,7 @@ const Auth: React.FC = () => {
             title="Entrar"
             variant="medium"
             color="primary"
-            className="w-4/12"
+            className="w-2/12"
           />
           <Button
             onClick={() => alert("registrar")}
