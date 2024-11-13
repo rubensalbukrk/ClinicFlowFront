@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+/* Contêiner do carrossel */
+.carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden; /* Impede que o conteúdo ultrapasse os limites do carrossel */
+  }
+  
+  .bebas-font-light {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  .bebas-font-regular {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .bebas-font-medium {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  /* Contêiner interno do carrossel */
+  .carousel-inner {
+    display: flex;
+    transition: transform 500ms ease-in-out; /* Transição suave ao mover entre os slides */
+    height: 100%;
+  }
+  
+  /* Cada item do carrossel */
+  .carousel-item {
+    width: 100%; /* Largura do slide (1 slide por vez) */
+    height: 100%; /* Altura do slide (garante que o conteúdo tenha a altura do carrossel) */
+  }
+  
+  /* Controle de navegação */
+  .carousel-control-prev,
+  .carousel-control-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.3);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+  }
+  
+  .carousel-control-prev {
+    left: 10px;
+  }
+  
+  .carousel-control-next {
+    right: 10px;
+  }
+  
+  /* Indicadores de slides */
+  .carousel-indicators {
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    z-index: 2;
+  }
+  
+  
+  .indicator {
+    width: 12px;
+    height: 4px;
+    background-color: rgb(163, 163, 163);
+    border-radius: 10px;
+    margin: 0 2px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .indicator.active {
+    background-color: white; /* Cor do slide ativo */
+    width: 24px;
+    height: 4px;
+  }

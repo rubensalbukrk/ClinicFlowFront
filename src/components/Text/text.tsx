@@ -3,7 +3,7 @@
 
 const sizes = {
     small: 'text-sm',
-    medium: 'text-base',
+    base: 'text-base',
     large: 'text-lg',
     extra: 'text-xl',
     big: 'text-3xl',
@@ -19,14 +19,15 @@ type ColorsProps = keyof typeof colors;
 
 type TextProps = {
     text: string;
-    variant: SizeProps;
+    size?: SizeProps;
     color?: ColorsProps;
+    className?: string;
 }
 
-const Text = ({text, variant, color = "default"}: TextProps) => {
-    const style = `${sizes[variant]} ${colors[color]} self-center text-white rounded-lg`
+const Text = ({text, size = "base", color = "default", className}: TextProps) => {
+    const style = `${sizes[size]} ${colors[color]}`
  return (
-    <p className={style}>
+    <p className={`${style} ` + `${className}`}>
         {text}
     </p>
  );

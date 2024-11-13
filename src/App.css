@@ -1,11 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 #root {
-  max-width: screen;
-  max-height: screen;
   margin: 0 auto;
   text-align: center;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
 }
+
+.bebas-font-light {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.bebas-font-regular {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.bebas-font-medium {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
 
 @keyframes logo-spin {
   from {

@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from "react";
 import Box from "../../components/Box/box";
 import { CiLock, CiUser } from "react-icons/ci";
+import { LuUserPlus2 } from "react-icons/lu";
 import Input from "../../components/Input/Input";
+import Text from "../../components/Text/text";
 import Button from "../../components/Button/button";
 import Container from "../../components/Container/Container";
 import InputLabel from "../../components/Input/InputLabel/InputLabel";
 import InputWarning from "../../components/Input/InputWarning/InputWarning";
+import ButtonIcon from "../../components/Button/ButtonIcon/buttonIcon";
+import colors from "tailwindcss/colors";
 
 const Auth: React.FC = () => {
   const [warnings, setWarnings] = useState<{ [key: string]: boolean }>({});
   const [email, setEmail] = useState<string>("");
   const [pass, setPass] = useState<string>("");
 
+  document.title = "Aréa de acesso";
+  
   function verifyValues() {
     setWarnings({
       email: !email,
@@ -30,10 +36,11 @@ const Auth: React.FC = () => {
   }, [email, pass]);
 
   return (
-    <Container>
-      <h1 className="text-6xl my-20">AUTENTICAÇÃO</h1>
+    <Container direction="col" className="px-8">
 
-      <Box size="small" direction="col" className="items-start justify-start">
+      <Text  text="Aréa de acesso" size="extra" />
+
+      <Box size="base" direction="col" className="justify-start items-start px-4 mb-36 sm:mb-0">
         <Input
           asWarning={warnings.email}
           onChange={(e) => setEmail(e.target.value)}
@@ -63,12 +70,23 @@ const Auth: React.FC = () => {
           />
         </Input>
 
-        <Button
-          onClick={verifyValues}
-          title="Entrar"
-          variant="large"
-          color="primary"
-        />
+        <div className="flex flex-row w-full mt-8 justify-between items-center">
+          <Button
+            onClick={verifyValues}
+            title="Entrar"
+            variant="medium"
+            color="primary"
+          />
+          <Button
+            onClick={() => alert("registrar")}
+            color="outline"
+            title="Não é cliente?"
+          >
+            <ButtonIcon
+              icon={<LuUserPlus2 size={22} color={colors.sky[500]} />}
+            />
+          </Button>
+        </div>
       </Box>
     </Container>
   );

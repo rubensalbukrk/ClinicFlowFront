@@ -2,7 +2,7 @@ import React from "react";
 import { InputProps } from "./type";
 import InputIcon from "./InputIcon/InputIcon";
 
-const Input: React.FC<InputProps> = ({ id, children, asWarning, icon, ...props }) => {
+const Input: React.FC<InputProps> = ({ id, children, asWarning, className, icon, ...props }) => {
   return (
     <div className={`flex flex-col my-2 justify-start items-start space-y-2 relative ${asWarning ? "mb-8" : "mb-0"}`}>
       {" "}
@@ -15,7 +15,7 @@ const Input: React.FC<InputProps> = ({ id, children, asWarning, icon, ...props }
           key={id}
           id={id}
           {...props}
-          className={`px-4 py-2 border rounded-md ${icon ? "px-9" : "px-2"}`}
+          className={` ${className} w-80 px-4 py-2 border rounded-md ${icon ? "px-9" : "px-2"}`}
         />
       </div>
     </div>

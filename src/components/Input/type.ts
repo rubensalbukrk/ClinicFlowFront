@@ -6,6 +6,7 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
     children?: React.ReactNode;
     icon?: React.ReactNode;
     asWarning?: boolean; 
+    className?: string;
 }
 
 type InputIconProps = {
