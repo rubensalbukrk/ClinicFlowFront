@@ -41,19 +41,17 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
           className="absolute brightness-50 object-fill w-full shadow-inner shadow-black h-full z-0"
         />
         <Text
-          size="large"
+        size="big"
           text={title}
-          className={`flex bebas-font-medium tracking-widest line-clamp-1 top-0 z-10 px-4 py-2 shadow-black/20 shadow-md backdrop-blur-lg bg-black/20 
-            ${id % 2 === 0 ? "self-end rounded-bl-md sm:self-auto" : "self-start rounded-br-md sm:self-auto"} 
+          className={`flex text-2xl bebas-font-medium tracking-widest mt-14 line-clamp-1 z-10 px-4 py-2 self-center
             ${triggerAnimation ? "animate-fade-down animate-duration-[2000ms] animate-delay-[500ms]" : ""}
-            sm:font-extrabold sm:text-6xl sm:bg-transparent sm:shadow-none sm:backdrop-blur-none
-            sm:px-28 sm:text-start sm:w-7/12
+            sm:font-extrabold sm:text-6xl sm:px-28 sm:text-start sm:w-7/12 sm:self-start
             `}
         />
         <Text
           color="primary"
           text={descrition}
-          className={`flex bebas-font-light flex-wrap w-full px-8 py-4 backdrop-blur-md bg-black/20 z-10 text-white text-md sm:text-xl
+          className={`flex w-full bebas-font-light flex-wrap px-8 py-4 backdrop-blur-md bg-black/20 z-10 text-white text-md
             ${triggerAnimation ? "animate-fade-up animate-duration-[2000ms] animate-delay-[300ms]" : ""}
             sm:text-5xl sm:bg-transparent sm:backdrop-blur-none sm:w-7/12
             sm:px-28 sm:text-start

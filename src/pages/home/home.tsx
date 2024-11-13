@@ -12,6 +12,7 @@ import { FormContact } from "../../components/ContactForm/ContactForm";
 import Button from "../../components/Button/button";
 import ButtonIcon from "../../components/Button/ButtonIcon/buttonIcon";
 import { IoIosArrowForward } from "react-icons/io";
+
 const CarouselDataItems = [
   {
     id: 1,

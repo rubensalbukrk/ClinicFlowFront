@@ -62,7 +62,6 @@ const Carousel: React.FC<CarouselProps> = ({
         (autoPlayRef.current = window.setInterval(nextSlide, autoplayDelay))
       }
     >
-
       <div
         className="carousel-inner" // Certifique-se de que o contêiner tenha overflow escondido
         style={{

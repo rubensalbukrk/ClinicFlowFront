@@ -1,6 +1,4 @@
 
-
-
 const sizes = {
     small: 'text-sm',
     base: 'text-base',
