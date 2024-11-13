@@ -10,6 +10,7 @@ import InputLabel from "../../components/Input/InputLabel/InputLabel";
 import InputWarning from "../../components/Input/InputWarning/InputWarning";
 import ButtonIcon from "../../components/Button/ButtonIcon/buttonIcon";
 import colors from "tailwindcss/colors";
+import "../../App.css";
 
 const Auth: React.FC = () => {
   const [warnings, setWarnings] = useState<{ [key: string]: boolean }>({});
@@ -17,7 +18,7 @@ const Auth: React.FC = () => {
   const [pass, setPass] = useState<string>("");
 
   document.title = "Aréa de acesso";
-  
+
   function verifyValues() {
     setWarnings({
       email: !email,
@@ -37,10 +38,26 @@ const Auth: React.FC = () => {
 
   return (
     <Container direction="col" className="px-8">
+      <Box size="w-full" direction="col">
+        <Text
+          size="big"
+          color="secundary"
+          text="Conecte-se,"
+          className="bebas-font-regular text-start"
+        />
+        <Text
+          size="extra"
+          color="secundary"
+          className="bebas-font-regular text-start"
+          text="obtenha todas as vantagens"
+        />
+      </Box>
 
-      <Text  text="Aréa de acesso" size="extra" />
-
-      <Box size="base" direction="col" className="justify-start items-start px-4 mb-36 sm:mb-0">
+      <Box
+        size="base"
+        direction="col"
+        className="bg-white shadow-black/20 shadow-xl justify-start items-start px-4 mb-36 sm:mb-0"
+      >
         <Input
           asWarning={warnings.email}
           onChange={(e) => setEmail(e.target.value)}
@@ -48,7 +65,7 @@ const Auth: React.FC = () => {
           id="Email"
           placeholder="Digite seu email"
         >
-          <InputLabel>Email</InputLabel>
+          <InputLabel className="text-sky-600">Email</InputLabel>
           <InputWarning
             label="Um email é necessário"
             warning={warnings.email}
@@ -63,7 +80,7 @@ const Auth: React.FC = () => {
           placeholder="********"
           onChange={(e) => setPass(e.target.value)}
         >
-          <InputLabel>Senha</InputLabel>
+          <InputLabel className="text-sky-600">Senha</InputLabel>
           <InputWarning
             label="Uma senha é necessária"
             warning={warnings.pass}
@@ -76,11 +93,13 @@ const Auth: React.FC = () => {
             title="Entrar"
             variant="medium"
             color="primary"
+            className="w-4/12"
           />
           <Button
             onClick={() => alert("registrar")}
             color="outline"
             title="Não é cliente?"
+            className="w-7/12"
           >
             <ButtonIcon
               icon={<LuUserPlus2 size={22} color={colors.sky[500]} />}

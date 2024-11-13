@@ -2,7 +2,7 @@
 import "../../App.css"
 import { useNavigate } from "react-router-dom";
 import CompactMenu from "../MenuCompact/MenuCompact";
-import Logo from '../../assets/icons-128/clareamento.png'
+import Logo from '../../assets/logo.png'
 
 
 const Header = () => {
@@ -15,8 +15,8 @@ const Header = () => {
         className="fixed flex flex-row z-50 h-16 top-0 left-0 w-screen px-2 items-center justify-between sm:hidden
                 bg-white/30 backdrop-blur-md shadow-black/10 shadow-md"
       >
-        <img src={Logo} height={30} width={30} alt='logo' />
-        <h1 className="bebas-font-regular text-2xl text-sky-600">Clínica Odontológica</h1>
+        <img src={Logo} height={32} width={32} alt='logo' />
+        <h1 className="bebas-font-regular mr-2 text-2xl text-sky-600">Clínica Odontológica</h1>
         <CompactMenu />
         {/* <Logo className="flex ml-4 object-fill mr-3" /> */}
       </nav>

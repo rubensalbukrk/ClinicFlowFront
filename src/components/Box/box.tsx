@@ -21,13 +21,14 @@ type DirectionProps = keyof typeof directionBox;
 
 type BoxProps = {
     children: React.ReactNode;
-    size: SizeProps;
+    size?: SizeProps;
     direction?: DirectionProps;
     className?: string;
+    ref?: unknown;
 }
 
 const Box: React.FC<BoxProps> = ({ children, size = "medium", direction = "col", className}) => {
-    const style = `flex ${directionBox[direction]} ${sizeBox[size]} bg-white py-4 px-4 items-start justify-start shadow-black/20 shadow-xl rounded-lg `
+    const style = `flex ${directionBox[direction]} ${sizeBox[size]} py-4 items-start justify-start rounded-lg `
  return (
     <div className={`${style}` + `${className}`}>
         {children}

@@ -16,6 +16,7 @@ type InputIconProps = {
 type InputLabelProps = LabelHTMLAttributes<HTMLLabelElement> & {
     id?: string;
     children: React.ReactNode;
+    className?: string;
 }
 
 type LabelWarningProps = LabelHTMLAttributes<HTMLParagraphElement> & {
