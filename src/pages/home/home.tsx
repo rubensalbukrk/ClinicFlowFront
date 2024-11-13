@@ -280,7 +280,7 @@ const Home: React.FC = () => {
           estabelece. Além de oferecer ótimos cuidados de saúde, nossa equipe
           também oferece diagnósticos de alta qualidade utilizando equipamentos
           médicos de última geração. Fique à vontade para saber mais sobre
-          nossos serviços abaixo.
+          nossos serviços abaixo!
         </p>
 
         <Box
