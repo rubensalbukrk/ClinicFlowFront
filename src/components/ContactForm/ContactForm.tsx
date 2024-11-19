@@ -20,11 +20,7 @@ const FormContact = () => {
       "
     >
       <h1 className="bebas-font-regular text-start text-3xl mb-4 sm:text-white">
-<<<<<<< HEAD
         ENTRE EM CONTATO
-=======
-        AGENDE-SE
->>>>>>> 983e0d7 (change input colors and border)
       </h1>
       <Input
         id="name"
