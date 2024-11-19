@@ -37,7 +37,7 @@ const Button: React.FC<ButtonProps> = ({
   variant = "default",
   color = "default",
 }) => {
-  const style = `flex w-40 ${sizes[variant]} ${colors[color]} items-center cursor-pointer gap-x-3 rounded-lg `;
+  const style = `flex ${sizes[variant]} ${colors[color]} items-center cursor-pointer gap-x-3 rounded-lg `;
   return (
     <div 
     className={`${style}` + `${className}`} 

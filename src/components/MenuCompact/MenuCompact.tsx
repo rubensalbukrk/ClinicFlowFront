@@ -16,7 +16,7 @@ const CompactMenu = () => {
     <div className="relative z-30 p-0 m-0 items-center">
       <button
         onClick={toggleMenu}
-        className="text-white mt-3 mr-2 focus:outline-none"
+        className="text-white mt-4 mr-2 focus:outline-none"
       >
         {isOpen ? (
           null

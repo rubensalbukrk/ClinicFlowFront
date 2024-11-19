@@ -12,11 +12,11 @@ const Header = () => {
     <header>
       {/**MENU COMPACTO */}
       <nav
-        className="fixed flex flex-row z-50 h-16 top-0 left-0 w-screen px-2 items-center justify-between sm:hidden
+        className="fixed flex flex-row z-50 h-16 top-0 left-0 w-screen justify-between sm:hidden
                 bg-white/30 backdrop-blur-md shadow-black/10 shadow-md"
       >
-        <img src={Logo} height={32} width={32} alt='logo' />
-        <h1 className="bebas-font-regular mr-2 text-2xl text-sky-600">Clínica Odontológica</h1>
+        <img src={Logo} height={28} width={32} alt='logo' className="ml-2 self-center" />
+        <h1 className="bebas-font-regular mr-2 self-center text-2xl text-sky-600">Clínica Odontológica</h1>
         <CompactMenu />
         {/* <Logo className="flex ml-4 object-fill mr-3" /> */}
       </nav>
