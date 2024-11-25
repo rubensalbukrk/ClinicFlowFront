@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Box from "../../components/Box/box";
-import { CiLock, CiUser } from "react-icons/ci";
+import { CiLock,CiUser  } from "react-icons/ci";
 import { LuUserPlus2 } from "react-icons/lu";
 import Input from "../../components/Input/Input";
 import Text from "../../components/Text/text";
@@ -64,9 +64,10 @@ const Auth: React.FC = () => {
         <Input
           asWarning={warnings.email}
           onChange={(e) => setEmail(e.target.value)}
-          icon={<CiUser size={22} />}
+          icon={<CiUser size={22} color={colors.sky[400]} opacity={0.7} />}
           id="Email"
           placeholder="Digite seu email"
+          className="text-sky-700"
         >
           <InputLabel className="text-sky-600">Email</InputLabel>
           <InputWarning
@@ -79,9 +80,10 @@ const Auth: React.FC = () => {
           asWarning={warnings.pass}
           id="senha"
           type="password"
-          icon={<CiLock size={22} />}
+          icon={<CiLock size={22} color={colors.sky[400]} opacity={0.7} />}
           placeholder="********"
           onChange={(e) => setPass(e.target.value)}
+          className="text-sky-700"
         >
           <InputLabel className="text-sky-600">Senha</InputLabel>
           <InputWarning
@@ -96,7 +98,7 @@ const Auth: React.FC = () => {
             title="Entrar"
             variant="medium"
             color="primary"
-            className="w-2/12"
+            className="w-auto"
           />
           <Button
             onClick={() => alert("registrar")}

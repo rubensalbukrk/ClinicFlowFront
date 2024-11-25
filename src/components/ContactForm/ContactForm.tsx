@@ -20,7 +20,7 @@ const FormContact = () => {
       "
     >
       <h1 className="bebas-font-regular text-start text-3xl mb-4 sm:text-white">
-        ENTRE EM CONTATO
+        AGENDE-SE
       </h1>
       <Input
         id="name"
