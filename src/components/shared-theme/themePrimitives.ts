@@ -242,8 +242,8 @@ export const colorSchemes = {
   light: {
     palette: {
       primary: {
-        light: brand[200],
-        main: brand[400],
+        light: brand[600],
+        main: brand[600],
         dark: brand[700],
         contrastText: brand[50],
       },
@@ -282,8 +282,8 @@ export const colorSchemes = {
         warning: orange[400],
       },
       action: {
-        hover: alpha(gray[200], 0.2),
-        selected: `${alpha(gray[200], 0.3)}`,
+        hover: alpha(green[400], 0.2),
+        selected: `${alpha(green[200], 0.3)}`,
       },
       baseShadow:
         'hsla(220, 30%, 5%, 0.07) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.07) 0px 8px 16px -5px',

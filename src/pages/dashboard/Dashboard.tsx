@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import * as React from 'react';
 import type {} from '@mui/x-date-pickers/themeAugmentation';
 import type {} from '@mui/x-charts/themeAugmentation';
@@ -35,6 +36,7 @@ export default function Dashboard(props: { disableCustomTheme?: boolean }) {
         <SideMenu />
         <AppNavbar />
         {/* Main content */}
+        
         <Box
           component="main"
           sx={(theme) => ({

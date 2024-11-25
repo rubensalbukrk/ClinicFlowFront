@@ -6,8 +6,6 @@ import NavbarBreadcrumbs from './NavbarBreadcrumbs';
 import MenuButton from './MenuButton';
 import ColorModeIconDropdown from '../../../components/shared-theme/ColorModeIconDropdown';
 
-import Search from './Search';
-
 export default function Header() {
   return (
     <Stack
@@ -24,7 +22,6 @@ export default function Header() {
     >
       <NavbarBreadcrumbs />
       <Stack direction="row" sx={{ gap: 1 }}>
-        <Search />
         <CustomDatePicker />
         <MenuButton showBadge aria-label="Open notifications">
           <NotificationsRoundedIcon />

@@ -3,29 +3,30 @@ import List from "@mui/material/List";
 import Stack from "@mui/material/Stack";
 import ListItem from "@mui/material/ListItem";
 import { useNavigate } from "react-router-dom";
-import EventIcon from "@mui/icons-material/Event";
+import {
+  EventNote, 
+  PeopleRounded,
+  FactCheck,
+} from '@mui/icons-material';
+
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import AutoGraphIcon from "@mui/icons-material/AutoGraph";
 import ListItemButton from "@mui/material/ListItemButton";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
 import HelpRoundedIcon from "@mui/icons-material/HelpRounded";
-import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
-import AssignmentRoundedIcon from "@mui/icons-material/AssignmentRounded";
+import CostumizedTreeView from './CustomizedTreeView';
 
 const mainListItems = [
-  { text: "Inicio", path: "/dashboard", icon: <HomeRoundedIcon /> },
-  { text: "Agendamentos", path: "/appointments", icon: <EventIcon /> },
-  { text: "Tarefas", path: "/services", icon: <AssignmentRoundedIcon /> },
-  { text: "Analises", path: "/analytics", icon: <AutoGraphIcon /> },
-  { text: "Clientes", path: "/clients", icon: <PeopleRoundedIcon /> },
+  { text: "Inteligência", path: "/dashboard", icon: <HomeRoundedIcon /> },
+  { text: "Agendamentos", path: "/appointments", icon: <EventNote /> },
+  { text: "Pacientes", path: "/pacients", icon: <PeopleRounded /> },
+  { text: "Financeiro", path: "/finance", icon: <AutoGraphIcon /> },
+  { text: "Estoque", path: "/estoque", icon: <FactCheck /> },
 ];
 
 const secondaryListItems = [
-  { text: "Ajustes", icon: <SettingsRoundedIcon /> },
-  { text: "Contato", icon: <InfoRoundedIcon /> },
   { text: "Feedback", icon: <HelpRoundedIcon /> },
 ];
 
@@ -34,6 +35,8 @@ export default function MenuContent() {
   const [indexSecondaryMenu, setIndexSecondaryMenu] = React.useState<number | undefined>(undefined);
 
   const navigation = useNavigate();
+
+  document.title = "Darshboard"
 
   return (
     <Stack sx={{ flexGrow: 1, p: 1, justifyContent: "space-between" }}>
@@ -52,6 +55,7 @@ export default function MenuContent() {
             </ListItemButton>
           </ListItem>
         ))}
+        <CostumizedTreeView />
       </List>
 
       <List dense>

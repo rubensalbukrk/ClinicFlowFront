@@ -23,7 +23,7 @@ import { TreeItem2Provider } from '@mui/x-tree-view/TreeItem2Provider';
 import { TreeViewBaseItem } from '@mui/x-tree-view/models';
 import { useTheme } from '@mui/material/styles';
 
-type Color = 'blue' | 'green';
+type Color = 'blue' | 'green' | 'orange' | 'yellow' | 'red';
 
 type ExtendedTreeItemProps = {
   color?: Color;
@@ -34,46 +34,17 @@ type ExtendedTreeItemProps = {
 const ITEMS: TreeViewBaseItem<ExtendedTreeItemProps>[] = [
   {
     id: '1',
-    label: 'Website',
+    label: 'Ajustes',
     children: [
-      { id: '1.1', label: 'Home', color: 'green' },
-      { id: '1.2', label: 'Pricing', color: 'green' },
-      { id: '1.3', label: 'About us', color: 'green' },
-      {
-        id: '1.4',
-        label: 'Blog',
-        children: [
-          { id: '1.1.1', label: 'Announcements', color: 'blue' },
-          { id: '1.1.2', label: 'April lookahead', color: 'blue' },
-          { id: '1.1.3', label: "What's new", color: 'blue' },
-          { id: '1.1.4', label: 'Meet the team', color: 'blue' },
-        ],
-      },
+      { id: '1.1', label: 'Equipe', color: 'blue' },
+      { id: '1.2', label: 'Planos', color: 'green' },
+      { id: '1.3', label: 'Anamnese', color: 'red' },
+      { id: '1.4', label: 'Categorias', color: 'orange' },
     ],
-  },
-  {
-    id: '2',
-    label: 'Store',
-    children: [
-      { id: '2.1', label: 'All products', color: 'green' },
-      {
-        id: '2.2',
-        label: 'Categories',
-        children: [
-          { id: '2.2.1', label: 'Gadgets', color: 'blue' },
-          { id: '2.2.2', label: 'Phones', color: 'blue' },
-          { id: '2.2.3', label: 'Wearables', color: 'blue' },
-        ],
-      },
-      { id: '2.3', label: 'Bestsellers', color: 'green' },
-      { id: '2.4', label: 'Sales', color: 'green' },
-    ],
-  },
-  { id: '4', label: 'Contact', color: 'blue' },
-  { id: '5', label: 'Help', color: 'blue' },
+  }
 ];
 
-function DotIcon({ color }: { color: string }) {
+function DotIcon({ color }: { color: string }) {  
   return (
     <Box sx={{ marginRight: 1, display: 'flex', alignItems: 'center' }}>
       <svg width={6} height={6}>
@@ -107,6 +78,8 @@ function CustomLabel({ color, expandable, children, ...other }: CustomLabelProps
   const colors = {
     blue: (theme.vars || theme).palette.primary.main,
     green: (theme.vars || theme).palette.success.main,
+    orange: (theme.vars || theme).palette.warning.main,
+    red: (theme.vars || theme).palette.error.main,
   };
 
   const iconColor = color ? colors[color] : null;
@@ -179,19 +152,12 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
 
 export default function CustomizedTreeView() {
   return (
-    <Card
-      variant="outlined"
-      sx={{ display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}
-    >
+    <>
       <CardContent>
-        <Typography component="h2" variant="subtitle2">
-          Product tree
-        </Typography>
         <RichTreeView
           items={ITEMS}
           aria-label="pages"
           multiSelect
-          defaultExpandedItems={['1', '1.1']}
           defaultSelectedItems={['1.1', '1.1.1']}
           sx={{
             m: '0 -8px',
@@ -203,6 +169,6 @@ export default function CustomizedTreeView() {
           slots={{ item: CustomTreeItem }}
         />
       </CardContent>
-    </Card>
+    </>
   );
 }
