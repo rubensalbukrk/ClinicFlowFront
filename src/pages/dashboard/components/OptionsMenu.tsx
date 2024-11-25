@@ -25,11 +25,12 @@ export default function OptionsMenu() {
     setAnchorEl(null);
   };
   return (
-    <React.Fragment>
+    <div className='absolute top-4 right-3'>
       <MenuButton
         aria-label="Open menu"
         onClick={handleClick}
         sx={{ borderColor: 'transparent' }}
+        
       >
         <MoreVertRoundedIcon />
       </MenuButton>
@@ -53,11 +54,10 @@ export default function OptionsMenu() {
           },
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <MenuItem onClick={handleClose}>Perfil</MenuItem>
+        <MenuItem onClick={handleClose}>Minha conta</MenuItem>
         <Divider />
-        <MenuItem onClick={handleClose}>Add another account</MenuItem>
-        <MenuItem onClick={handleClose}>Settings</MenuItem>
+        <MenuItem onClick={handleClose}>Ajustes</MenuItem>
         <Divider />
         <MenuItem
           onClick={handleClose}
@@ -68,12 +68,12 @@ export default function OptionsMenu() {
             },
           }}
         >
-          <ListItemText>Logout</ListItemText>
+          <ListItemText>Sair</ListItemText>
           <ListItemIcon>
             <LogoutRoundedIcon fontSize="small" />
           </ListItemIcon>
         </MenuItem>
       </Menu>
-    </React.Fragment>
+    </div>
   );
 }
