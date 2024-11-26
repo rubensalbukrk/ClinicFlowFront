@@ -1,13 +1,13 @@
-import Grid from '@mui/material/Grid2';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
+import Details3View from './Details3View';
 import Typography from '@mui/material/Typography';
-import Copyright from '../internals/components/Copyright';
-import ChartUserByCountry from './ChartUserByCountry';
-import CustomizedDataGrid from './CustomizedDataGrid';
 import PageViewsBarChart from './PageViewsBarChart';
 import StatCard, { StatCardProps } from './StatCard';
-import Details3View from './Details3View';
+import ChartUserByCountry from './ChartUserByCountry';
+import CustomizedDataGrid from './CustomizedDataGrid';
+import Copyright from '../internals/components/Copyright';
 
 const data: StatCardProps[] = [
   {

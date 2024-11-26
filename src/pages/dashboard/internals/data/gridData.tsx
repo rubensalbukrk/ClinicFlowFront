@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
-import { GridCellParams, GridRowsProp, GridColDef } from '@mui/x-data-grid';
+import Avatar from '@mui/material/Avatar';
 import { SparkLineChart } from '@mui/x-charts/SparkLineChart';
+import { GridCellParams, GridRowsProp, GridColDef } from '@mui/x-data-grid';
 
 type SparkLineData = number[];
 

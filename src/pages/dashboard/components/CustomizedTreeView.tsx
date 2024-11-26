@@ -1,8 +1,5 @@
-import * as React from 'react';
 import clsx from 'clsx';
-import { styled, useTheme, alpha } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import * as React from 'react';
 import {
   House,
   EventNote,
@@ -15,17 +12,15 @@ import {
   SettingsSuggest,
   AccountBalanceWalletOutlined,
 } from '@mui/icons-material';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import { SvgIconProps } from '@mui/material/SvgIcon';
-import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
-import {
-  TreeItem2Content,
-  TreeItem2IconContainer,
-  TreeItem2Root,
-  TreeItem2GroupTransition,
-} from '@mui/x-tree-view/TreeItem2';
-import { useTreeItem2, UseTreeItem2Parameters } from '@mui/x-tree-view/useTreeItem2';
-import { TreeItem2Provider } from '@mui/x-tree-view/TreeItem2Provider';
 import { TreeItem2Icon } from '@mui/x-tree-view/TreeItem2Icon';
+import { styled, useTheme, alpha } from '@mui/material/styles';
+import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
+import { TreeItem2Provider } from '@mui/x-tree-view/TreeItem2Provider';
+import { useTreeItem2, UseTreeItem2Parameters } from '@mui/x-tree-view/useTreeItem2';
+import { TreeItem2Content, TreeItem2IconContainer, TreeItem2Root, TreeItem2GroupTransition } from '@mui/x-tree-view/TreeItem2';
 
 declare module 'react' {
   interface CSSProperties {

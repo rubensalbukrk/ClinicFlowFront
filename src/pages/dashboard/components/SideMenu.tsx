@@ -1,13 +1,14 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
-import Avatar from "@mui/material/Avatar";
-import MuiDrawer, { drawerClasses } from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
+import { Divider } from "@mui/material";
 import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
 import MenuContent from "./MenuContent";
 import OptionsMenu from "./OptionsMenu";
-import { Divider } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import { styled } from "@mui/material/styles";
+import PerfilImage from '../../../assets/perfil.jpg'
+import Typography from "@mui/material/Typography";
+import MuiDrawer, { drawerClasses } from "@mui/material/Drawer";
 
 const drawerWidth = 240;
 
@@ -50,8 +51,9 @@ export default function SideMenu() {
           <Avatar
           sizes="large"
           alt="Lucrecia"
-          src="/static/images/avatar/7.jpg"
-          sx={{ width: 80, height: 88, paddingInline: 6 }}
+          src={PerfilImage}
+          className="object-fill"
+          sx={{ width: 80, height: 84 }}
         />
           <Box sx={{alignItems: 'center', justifyContent: 'center' }}>
             <Typography
