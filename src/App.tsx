@@ -6,6 +6,8 @@ import Manager from "./pages/manager/manager";
 import Services from "./pages/services/services";
 import Appointments from "./pages/appointments/appointments";
 import Dashboard from "./pages/dashboard/Dashboard";
+
+
 import { Intelligence } from "./pages/dashboard/pages/inteligence/inteligence";
 import { Finance } from "./pages/dashboard/pages/finance/finance";
 import { Appoints } from "./pages/dashboard/pages/appoints/appoints";
@@ -14,8 +16,6 @@ import { Plans } from "./pages/dashboard/pages/plans/plans";
 import { Anamnesia } from "./pages/dashboard/pages/anamnesia/anamnesia";
 import { Teams } from "./pages/dashboard/pages/teams/teams";
 import { Stock } from "./pages/dashboard/pages/stock/stock";
-i
-
 
 function App() {
   return (
