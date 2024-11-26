@@ -1,5 +1,6 @@
-import clsx from 'clsx';
-import * as React from 'react';
+import clsx from "clsx";
+import * as React from "react";
+import { Link } from "react-router-dom";
 import {
   House,
   EventNote,
@@ -11,26 +12,35 @@ import {
   ArrowDropDown,
   SettingsSuggest,
   AccountBalanceWalletOutlined,
-} from '@mui/icons-material';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import { SvgIconProps } from '@mui/material/SvgIcon';
-import { TreeItem2Icon } from '@mui/x-tree-view/TreeItem2Icon';
-import { styled, useTheme, alpha } from '@mui/material/styles';
-import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
-import { TreeItem2Provider } from '@mui/x-tree-view/TreeItem2Provider';
-import { useTreeItem2, UseTreeItem2Parameters } from '@mui/x-tree-view/useTreeItem2';
-import { TreeItem2Content, TreeItem2IconContainer, TreeItem2Root, TreeItem2GroupTransition } from '@mui/x-tree-view/TreeItem2';
+} from "@mui/icons-material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import { SvgIconProps } from "@mui/material/SvgIcon";
+import { TreeItem2Icon } from "@mui/x-tree-view/TreeItem2Icon";
+import { styled, useTheme, alpha } from "@mui/material/styles";
+import { SimpleTreeView } from "@mui/x-tree-view/SimpleTreeView";
+import { TreeItem2Provider } from "@mui/x-tree-view/TreeItem2Provider";
+import {
+  useTreeItem2,
+  UseTreeItem2Parameters,
+} from "@mui/x-tree-view/useTreeItem2";
+import {
+  TreeItem2Content,
+  TreeItem2IconContainer,
+  TreeItem2Root,
+  TreeItem2GroupTransition,
+} from "@mui/x-tree-view/TreeItem2";
+import { colors } from "@mui/material";
 
-declare module 'react' {
+declare module "react" {
   interface CSSProperties {
-    '--tree-view-color'?: string;
-    '--tree-view-bg-color'?: string;
+    "--tree-view-color"?: string;
+    "--tree-view-bg-color"?: string;
   }
 }
 
 interface StyledTreeItemProps
-  extends Omit<UseTreeItem2Parameters, 'rootRef'>,
+  extends Omit<UseTreeItem2Parameters, "rootRef">,
     React.HTMLAttributes<HTMLLIElement> {
   bgColor?: string;
   bgColorForDarkMode?: string;
@@ -50,21 +60,23 @@ const CustomTreeItemContent = styled(TreeItem2Content)(({ theme }) => ({
   borderRadius: theme.spacing(2),
   paddingRight: theme.spacing(1),
   fontWeight: theme.typography.fontWeightMedium,
-  '&.expanded': {
+  "&.expanded": {
     fontWeight: theme.typography.fontWeightRegular,
   },
-  '&:hover': {
+  "&:hover": {
     backgroundColor: theme.palette.action.hover,
   },
-  '&.focused, &.selected, &.selected.focused': {
+  "&.focused, &.selected, &.selected.focused": {
     backgroundColor: `var(--tree-view-bg-color, ${theme.palette.action.selected})`,
-    color: 'var(--tree-view-color)',
+    color: "var(--tree-view-color)",
   },
 }));
 
-const CustomTreeItemIconContainer = styled(TreeItem2IconContainer)(({ theme }) => ({
-  marginRight: theme.spacing(0),
-}));
+const CustomTreeItemIconContainer = styled(TreeItem2IconContainer)(
+  ({ theme }) => ({
+    marginRight: theme.spacing(0),
+  })
+);
 
 const CustomTreeItemGroupTransition = styled(TreeItem2GroupTransition)(
   ({ theme }) => ({
@@ -72,12 +84,12 @@ const CustomTreeItemGroupTransition = styled(TreeItem2GroupTransition)(
     [`& .content`]: {
       paddingLeft: theme.spacing(2),
     },
-  }),
+  })
 );
 
 const CustomTreeItem = React.forwardRef(function CustomTreeItem(
   props: StyledTreeItemProps,
-  ref: React.Ref<HTMLLIElement>,
+  ref: React.Ref<HTMLLIElement>
 ) {
   const theme = useTheme();
   const {
@@ -105,9 +117,10 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
   } = useTreeItem2({ id, itemId, children, label, disabled, rootRef: ref });
 
   const style = {
-    '--tree-view-color': theme.palette.mode !== 'dark' ? color : colorForDarkMode,
-    '--tree-view-bg-color':
-      theme.palette.mode !== 'dark' ? bgColor : bgColorForDarkMode,
+    "--tree-view-color":
+      theme.palette.mode !== "dark" ? color : colorForDarkMode,
+    "--tree-view-bg-color":
+      theme.palette.mode !== "dark" ? bgColor : bgColorForDarkMode,
   };
 
   return (
@@ -115,7 +128,7 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
       <CustomTreeItemRoot {...getRootProps({ ...other, style })}>
         <CustomTreeItemContent
           {...getContentProps({
-            className: clsx('content', {
+            className: clsx("content", {
               expanded: status.expanded,
               selected: status.selected,
               focused: status.focused,
@@ -127,9 +140,9 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
           </CustomTreeItemIconContainer>
           <Box
             sx={{
-              display: 'flex',
+              display: "flex",
               flexGrow: 1,
-              alignItems: 'center',
+              alignItems: "center",
               p: 0.5,
               pr: 0,
             }}
@@ -137,8 +150,8 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
             <Box component={LabelIcon} color="inherit" sx={{ mr: 1 }} />
             <Typography
               {...getLabelProps({
-                variant: 'body2',
-                sx: { display: 'flex', fontWeight: 'inherit', flexGrow: 1 },
+                variant: "body2",
+                sx: { display: "flex", fontWeight: "inherit", flexGrow: 1 },
               })}
             />
             <Typography variant="caption" color="inherit">
@@ -158,12 +171,59 @@ function EndIcon() {
   return <div style={{ width: 24 }} />;
 }
 
+const MenuItems = [
+  {
+    id: 1,
+    path: "intelligence",
+    icon: House,
+    label: "Inteligência",
+  },
+  {
+    id: 2,
+    path: "appoints",
+    icon: EventNote,
+    label: "Agendamentos",
+  },
+  {
+    id: 3,
+    path: "pacients",
+    icon: PeopleOutlineRounded,
+    label: "Pacientes",
+  },
+  {
+    id: 4,
+    path: "finance",
+    icon: AccountBalanceWalletOutlined,
+    label: "Financeiro",
+  },
+  {
+    id: 5,
+    path: "anamnesia",
+    icon: PersonSearch,
+    label: "Anamnesia",
+  },
+  {
+    id: 6,
+    path: "teams",
+    icon: Diversity3,
+    label: "Equipes",
+  },
+  {
+    id: 7,
+    path: "plans",
+    icon: Description,
+    label: "Planos",
+  },
+];
+
+
+
 export default function GmailTreeView() {
   return (
     <SimpleTreeView
       aria-label="gmail"
-      defaultExpandedItems={['3']}
-      defaultSelectedItems="1"
+      defaultExpandedItems={["3"]}
+      defaultSelectedItems="2"
       slots={{
         expandIcon: ArrowRight,
         collapseIcon: ArrowDropDown,
@@ -171,42 +231,47 @@ export default function GmailTreeView() {
       }}
       sx={{ flexGrow: 1, maxWidth: 400 }}
     >
-      <CustomTreeItem itemId="1" onClick={() => alert('ALL MAIL')} label="Inteligência" labelIcon={House} />
-      <CustomTreeItem itemId="2"  onClick={() => alert('TRASH')} label="Agendamentos" labelIcon={EventNote} />
-      <CustomTreeItem itemId="3" label="Pacientes" labelIcon={PeopleOutlineRounded} />
-      <CustomTreeItem itemId="4" label="Financeiro" labelIcon={AccountBalanceWalletOutlined} />
-      <CustomTreeItem itemId="5" label="Ajustes" labelIcon={SettingsSuggest}>
-        <CustomTreeItem
-          itemId="6"
-          label="Equipes"
-          labelIcon={Diversity3}
-          labelInfo=""
-          color="#e3742f"
-          bgColor="#fcefe3"
-          colorForDarkMode="#FFE2B7"
-          bgColorForDarkMode={alpha('#ff8f00', 0.2)}
-        />
-        <CustomTreeItem
-          itemId="7"
-          label="Planos"
-          labelIcon={Description}
-          labelInfo=""
-          color="#a250f5"
-          bgColor="#000000"
-          colorForDarkMode="#D9B8FB"
-          bgColorForDarkMode={alpha('#9035ff', 0.15)}
-        />
-        <CustomTreeItem
-          itemId="8"
-          label="Anamnesia"
-          labelIcon={PersonSearch}
-          labelInfo=""
-          color="#3c8039"
-          bgColor="#e6f4ea"
-          colorForDarkMode="#CCE8CD"
-          bgColorForDarkMode={alpha('#64ff6a', 0.2)}
-        />
-      
+      {MenuItems?.filter((item) => item.id < 5)
+        .map((item) => {
+          return (
+            <Link to={item.path}>
+            <CustomTreeItem
+              itemId={item.label}
+              label={item.label}
+              labelIcon={item.icon}
+              labelInfo=""
+              bgColor={alpha(colors.green[100], 0.6)}
+              colorForDarkMode={colors.green[400]}
+              bgColorForDarkMode={alpha("#64ff6a", 0.1)}
+            />
+            </Link>
+          );
+        })}
+      <CustomTreeItem
+        itemId="5"
+        label="Ajustes"
+        labelIcon={SettingsSuggest}
+        color={colors.green[800]}
+        bgColor={alpha(colors.green[100], 0.6)}
+        colorForDarkMode={colors.green[400]}
+        bgColorForDarkMode={alpha("#64ff6a", 0.1)}
+      >
+        {MenuItems?.filter((item) => item.id > 4)
+        .map((item) => {
+          return (
+            <Link to={item.path}>
+            <CustomTreeItem
+              itemId={item.label}
+              label={item.label}
+              labelIcon={item.icon}
+              labelInfo=""
+              bgColor={alpha(colors.green[100], 0.6)}
+              colorForDarkMode={colors.green[400]}
+              bgColorForDarkMode={alpha("#64ff6a", 0.1)}
+            />
+            </Link>
+          );
+        })}
       </CustomTreeItem>
     </SimpleTreeView>
   );

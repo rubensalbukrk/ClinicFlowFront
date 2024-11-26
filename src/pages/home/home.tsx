@@ -123,7 +123,7 @@ const Home: React.FC = () => {
         className="mt-6 sm:mt-8 h-80 sm:h-[500px]"
       />
 
-      <div>
+      <div >
         <FormContact />
       </div>
 

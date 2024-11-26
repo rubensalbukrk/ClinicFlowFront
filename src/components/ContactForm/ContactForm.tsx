@@ -15,7 +15,7 @@ import colors from "tailwindcss/colors";
 const FormContact = () => {
   return (
     <form
-      className="sticky w-auto py-8 px-4 top-[15%] items-center justify-between right-28 backdrop-blur-lg z-10
+      className="sticky w-auto py-8 sm:mt-8 px-4 top-[15%] items-center justify-between right-28 backdrop-blur-lg z-10
       sm:absolute sm:bg-sky-400/40
       "
     >

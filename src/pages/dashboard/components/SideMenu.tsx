@@ -9,6 +9,7 @@ import { styled } from "@mui/material/styles";
 import PerfilImage from '../../../assets/perfil.jpg'
 import Typography from "@mui/material/Typography";
 import MuiDrawer, { drawerClasses } from "@mui/material/Drawer";
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
