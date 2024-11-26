@@ -216,8 +216,6 @@ const MenuItems = [
   },
 ];
 
-
-
 export default function GmailTreeView() {
   return (
     <SimpleTreeView
@@ -231,10 +229,9 @@ export default function GmailTreeView() {
       }}
       sx={{ flexGrow: 1, maxWidth: 400 }}
     >
-      {MenuItems?.filter((item) => item.id < 5)
-        .map((item) => {
-          return (
-            <Link to={item.path}>
+      {MenuItems?.filter((item) => item.id < 5).map((item) => {
+        return (
+          <Link to={item.path}>
             <CustomTreeItem
               itemId={item.label}
               label={item.label}
@@ -244,9 +241,9 @@ export default function GmailTreeView() {
               colorForDarkMode={colors.green[400]}
               bgColorForDarkMode={alpha("#64ff6a", 0.1)}
             />
-            </Link>
-          );
-        })}
+          </Link>
+        );
+      })}
       <CustomTreeItem
         itemId="5"
         label="Ajustes"
@@ -256,22 +253,42 @@ export default function GmailTreeView() {
         colorForDarkMode={colors.green[400]}
         bgColorForDarkMode={alpha("#64ff6a", 0.1)}
       >
-        {MenuItems?.filter((item) => item.id > 4)
-        .map((item) => {
+        {MenuItems?.filter((item) => item.id > 4).map((item) => {
           return (
             <Link to={item.path}>
-            <CustomTreeItem
-              itemId={item.label}
-              label={item.label}
-              labelIcon={item.icon}
-              labelInfo=""
-              bgColor={alpha(colors.green[100], 0.6)}
-              colorForDarkMode={colors.green[400]}
-              bgColorForDarkMode={alpha("#64ff6a", 0.1)}
-            />
+              <CustomTreeItem
+                itemId={item.label}
+                label={item.label}
+                labelIcon={item.icon}
+                labelInfo=""
+                bgColor={alpha(colors.green[100], 0.6)}
+                colorForDarkMode={colors.green[400]}
+                bgColorForDarkMode={alpha("#64ff6a", 0.1)}
+              />
             </Link>
           );
         })}
+ 
+           <Link to="intelligence">
+          <CustomTreeItem
+            itemId="intelligence"
+            label="intelligence"
+            labelIcon={House}
+            bgColor={alpha(colors.green[100], 0.6)}
+            colorForDarkMode={colors.green[400]}
+            bgColorForDarkMode={alpha("#64ff6a", 0.1)}
+          />
+        </Link>
+        <Link to="finance">
+          <CustomTreeItem
+            itemId="finance"
+            label="finance"
+            labelIcon={AccountBalanceWalletOutlined}
+            bgColor={alpha(colors.green[100], 0.6)}
+            colorForDarkMode={colors.green[400]}
+            bgColorForDarkMode={alpha("#64ff6a", 0.1)}
+          />
+        </Link>
       </CustomTreeItem>
     </SimpleTreeView>
   );
