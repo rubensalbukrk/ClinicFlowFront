@@ -268,27 +268,6 @@ export default function GmailTreeView() {
             </Link>
           );
         })}
- 
-           <Link to="intelligence">
-          <CustomTreeItem
-            itemId="intelligence"
-            label="intelligence"
-            labelIcon={House}
-            bgColor={alpha(colors.green[100], 0.6)}
-            colorForDarkMode={colors.green[400]}
-            bgColorForDarkMode={alpha("#64ff6a", 0.1)}
-          />
-        </Link>
-        <Link to="finance">
-          <CustomTreeItem
-            itemId="finance"
-            label="finance"
-            labelIcon={AccountBalanceWalletOutlined}
-            bgColor={alpha(colors.green[100], 0.6)}
-            colorForDarkMode={colors.green[400]}
-            bgColorForDarkMode={alpha("#64ff6a", 0.1)}
-          />
-        </Link>
       </CustomTreeItem>
     </SimpleTreeView>
   );

@@ -14,18 +14,22 @@ import { Plans } from "./pages/dashboard/pages/plans/plans";
 import { Anamnesia } from "./pages/dashboard/pages/anamnesia/anamnesia";
 import { Teams } from "./pages/dashboard/pages/teams/teams";
 import { Stock } from "./pages/dashboard/pages/stock/stock";
+i
+
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="*" element={<Home />} />
       <Route path="/auth" element={<Auth />} />
       <Route path="/appointments" element={<Appointments />} />
       <Route path="/services" element={<Services />} />
       <Route path="/manager" element={<Manager />} />
 
       <Route path="/dashboard" element={<Dashboard />}>
-        <Route index element={<Intelligence />} />{" "}
+        <Route index element={<Intelligence />} />
+        <Route path="*" element={<Intelligence />} />
         <Route path="intelligence" element={<Intelligence />} />
         <Route path="appoints" element={<Appoints />} />
         <Route path="pacients" element={<Pacients />} />

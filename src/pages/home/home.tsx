@@ -1,25 +1,26 @@
-import "../../App.css";
+import "src/App.css";
 import React from "react";
-import Carousel from "../../components/Carousel/Carousel";
-import ImageOdonto1 from "../../assets/images/Odontopediatria.png";
-import ImageOdonto2 from "../../assets/images/ortodontia.png";
-import ImageOdonto3 from "../../assets/images/profissionais.png";
-import ImageOdonto4 from "../../assets/images/implantes.png";
-import ImageOdonto5 from "../../assets/images//bucal2.png";
-import ImageOdonto6 from "../../assets/images/proteses.png";
-import ServiceCirurgy from "../../assets/icons-128/cirurgia.png";
-import ServiceOftal from "../../assets/icons-128/service-oftal.png";
-import ServiceOdontopediatria from "../../assets/icons-128/service-odontopediatria.png";
-import ServiceClareamento from '../../assets/icons-128/service-clareamento.png'
-import ServiceCaries from '../../assets/icons-128/service-caries.png'
-import ServiceImplantes from '../../assets/icons-128/service-implantes.png'
-import Header from "../../components/Header/Header";
-import { FormContact } from "../../components/ContactForm/ContactForm";
-import Button from "../../components/Button/button";
-import ButtonIcon from "../../components/Button/ButtonIcon/buttonIcon";
+import Carousel from "components/Carousel/Carousel";
+import ImageOdonto1 from "assets/images/Odontopediatria.png";
+import ImageOdonto2 from "assets/images/ortodontia.png";
+import ImageOdonto3 from "assets/images/profissionais.png";
+import ImageOdonto4 from "assets/images/implantes.png";
+import ImageOdonto5 from "assets/images//bucal2.png";
+import ImageOdonto6 from "assets/images/proteses.png";
+import ServiceCirurgy from "assets/icons-128/cirurgia.png";
+import ServiceOftal from "assets/icons-128/service-oftal.png";
+import ServiceOdontopediatria from "assets/icons-128/service-odontopediatria.png";
+import ServiceClareamento from 'assets/icons-128/service-clareamento.png'
+import ServiceCaries from 'assets/icons-128/service-caries.png'
+import ServiceImplantes from 'assets/icons-128/service-implantes.png'
+import Header from "components/Header/Header";
+import { FormContact } from "components/ContactForm/ContactForm";
+import Button from "components/Button/button";
+import ButtonIcon from "components/Button/ButtonIcon/buttonIcon";
 import { IoIosArrowForward } from "react-icons/io";
-import Text from "../../components/Text/text";
-import Box from "../../components/Box/box";
+import Text from 'components/Text/text';
+import Box from 'components/Box/box'
+
 
 const CarouselDataItems = [
   {

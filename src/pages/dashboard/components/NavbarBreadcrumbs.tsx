@@ -30,7 +30,7 @@ const pageName: {[key: string]: string} = {
 export default function NavbarBreadcrumbs() {
   const {pathname} = useLocation();
   let page = pathname.replace('/dashboard/', '').toUpperCase();
-  let displayNamePage = pageName[page] || page;
+  let displayNamePage = pageName[page] || pageName['INTELLIGENCE'];
 
   return (
     <StyledBreadcrumbs
