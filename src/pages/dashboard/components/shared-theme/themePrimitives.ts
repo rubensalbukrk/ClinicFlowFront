@@ -1,4 +1,5 @@
 import { createTheme, alpha, PaletteMode, Shadows } from '@mui/material/styles';
+import { slate, white } from 'tailwindcss/colors';
 
 declare module '@mui/material/Paper' {
   interface PaperPropsVariantOverrides {
@@ -254,10 +255,10 @@ export const colorSchemes = {
   light: {
     palette: {
       primary: {
-        light: brand[600],
-        main: brand[600],
-        dark: brand[700],
-        contrastText: brand[50],
+        light: green[400],
+        main: green[400],
+        dark: green[700],
+        contrastText: green[50],
       },
       info: {
         light: brand[100],
@@ -305,9 +306,9 @@ export const colorSchemes = {
     palette: {
       primary: {
         contrastText: brand[50],
-        light: brand[300],
-        main: brand[400],
-        dark: brand[700],
+        light: green[300],
+        main: green[400],
+        dark: green[700],
       },
       info: {
         contrastText: brand[300],
