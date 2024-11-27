@@ -6,7 +6,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { colors } from '@mui/material';
+//@ts-nocheck
 
 function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
@@ -42,7 +42,7 @@ function a11yProps(index: unknown) {
   };
 }
 
-export default function AppointsTab() {
+function FormAppointsTab() {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
@@ -54,7 +54,11 @@ export default function AppointsTab() {
   };
 
   return (
-    <Box sx={{ bgcolor: 'background.paper', width: '100%' }}>
+    <Box sx={{ 
+      bgcolor: 'background.paper', 
+      borderRadius: 1,
+      width: '100%' }}
+      >
       <AppBar className='rounded-lg' position="static">
       <Typography
               fontSize={20}
@@ -86,3 +90,5 @@ export default function AppointsTab() {
     </Box>
   );
 }
+
+export {FormAppointsTab}

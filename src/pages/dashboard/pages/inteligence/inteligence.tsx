@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { AppBar, Box, colors, Typography } from "@mui/material";
-import Grid from "@mui/material/Grid2";
 import Tab from "@mui/material/Tab";
+import Grid from "@mui/material/Grid2";
+import { AccountTab } from "./components/Tabs/FormAccount/accountTab";
+import { FormAppointsTab } from "./components/Tabs/FormReAppoints/appointTab";
+import { Box } from "@mui/material";
 import { TabList, TabContext, TabPanel } from "@mui/lab/";
-
 import Copyright from "../../internals/components/Copyright";
 import Detail3View from "src/pages/dashboard/components/Details3View";
-import PageViewsBarChart from "src/pages/dashboard/components/Details3View";
-import AppointmentsTab from "./Tabs/appointsTab";
-import AccountTab from "./Tabs/accountTab";
+import { FormAppointsConfirm } from "./components/FormAppointsOn/FormAppointsConfirms";
+import { FormPacients } from "./components/FormPacients/FormPacients";
 
 const Intelligence = () => {
   const [valueTab, setValueTab] = useState("1");
@@ -34,34 +34,8 @@ const Intelligence = () => {
           sx={{ display: "flex", alignItems: "start" }}
           size={{ xs: 12, sm: 6 }}
         >
-          <Box
-            sx={{
-              width: "100%",
-              alignItems: "start",
-              backgroundColor: "whitesmoke",
-            }}
-          >
-            <AppBar position="static">
-              <Typography
-              fontSize={20}
-              className="rounded-t-lg"
-              sx={{width: '100%', p: 2, display: "flex", selfCenter: "start" }}
-            >
-              CONSULTAS A CONFIRMAR
-            </Typography>
-            </AppBar>
-            
-
-            <Box
-            sx={{ p: 2}}
-            >
-            <Typography>
-              LUANA SANTOS
-            </Typography>
-            </Box>
-          </Box>
-
-          <AppointmentsTab />
+          <FormAppointsConfirm />
+          <FormAppointsTab />
 
         </Grid>
 
@@ -76,18 +50,10 @@ const Intelligence = () => {
           <Box
             sx={{
               width: "100%",
-              alignItems: "start",
-              p: 2,
-
-              backgroundColor: "whitesmoke",
+              alignItems: "start"
             }}
           >
-            <Typography
-              fontSize={20}
-              sx={{ display: "flex", selfCenter: "start" }}
-            >
-              PACIENTES
-            </Typography>
+            <FormPacients />
           </Box>
         </Grid>
       </Grid>

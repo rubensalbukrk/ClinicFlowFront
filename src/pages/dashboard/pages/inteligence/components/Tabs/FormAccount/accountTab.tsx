@@ -6,7 +6,6 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { colors } from '@mui/material';
 
 function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
@@ -42,7 +41,7 @@ function a11yProps(index: unknown) {
   };
 }
 
-export default function AccountTab() {
+function AccountTab() {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
@@ -54,7 +53,7 @@ export default function AccountTab() {
   };
 
   return (
-    <Box sx={{ bgcolor: 'background.paper', width: '100%' }}>
+    <Box sx={{ borderRadius: 1, bgcolor: 'background.paper', width: '100%' }}>
       <AppBar className='rounded-lg' sx={{opacity: 1}} position="static">
       <Typography
               fontSize={20}
@@ -86,3 +85,5 @@ export default function AccountTab() {
     </Box>
   );
 }
+
+export {AccountTab}

@@ -34,6 +34,9 @@
       "assets/*": [
         "./src/assets/*"
       ],
+      "dashboard/*": [
+        "./src/pages/dashboard/*"
+      ],
     }
   },
   "include": [
