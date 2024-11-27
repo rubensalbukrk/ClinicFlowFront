@@ -36,7 +36,7 @@ export default function Dashboard(props: { disableCustomTheme?: boolean }) {
 
         <Box
           component="main"
-          sx={(theme: {vars: any}) => ({
+          sx={(theme: any) => ({
             flexGrow: 1,
             backgroundColor: theme.vars
               ? `rgba(${theme.vars.palette.background.defaultChannel} / 1)`
@@ -54,7 +54,7 @@ export default function Dashboard(props: { disableCustomTheme?: boolean }) {
             }}
           >
             <Header />
-            <Box className="dashboard-content">
+            <Box className="w-full dashboard-content">
               <Outlet />
             </Box>
           </Stack>

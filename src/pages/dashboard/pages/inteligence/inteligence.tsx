@@ -24,38 +24,33 @@ const Intelligence = () => {
     return (
       <Grid
         container
-        spacing={2}
+        spacing={6}
         columns={12}
-        sx={{ mb: (theme) => theme.spacing(2) }}
+        sx={{ width: '100%', mb: (theme) => theme.spacing(2) }}
       >
+        {/**** CONSULTAS ****/}
         <Grid
           container
-          spacing={2}
-          sx={{ display: "flex", alignItems: "start" }}
-          size={{ xs: 12, sm: 6 }}
+          spacing={4}
+          sx={{ 
+            display: "flex", alignItems: "start" }}
+          size={{ xs: 12, md: 7, sm: 12 }}
         >
           <FormAppointsConfirm />
           <FormAppointsTab />
-
         </Grid>
-
+        {/**** ACCOUNTS, PACIENTS ****/}
         <Grid
-          container
           direction="column"
-          spacing={2}
-          sx={{ display: "flex", alignItems: "start" }}
-          size={{ xs: 12, md: 6 }}
+          container
+          spacing={4}
+          sx={{display: "flex", flexDirection: 'column'}}
+          size={{ xs: 12, md: 5 }}
         >
           <AccountTab />
-          <Box
-            sx={{
-              width: "100%",
-              alignItems: "start"
-            }}
-          >
-            <FormPacients />
-          </Box>
+          <FormPacients />
         </Grid>
+
       </Grid>
     );
   };
