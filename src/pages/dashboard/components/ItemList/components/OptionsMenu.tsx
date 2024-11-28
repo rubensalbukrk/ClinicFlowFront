@@ -44,18 +44,20 @@ export default function OptionsMenu(props: any) {
   return (
     <div>
       <IconButton
-      sx={{
-        width: {sm: 12}
-      }}
         aria-label="more"
         id="long-button"
         aria-controls={open ? 'long-menu' : undefined}
         aria-expanded={open ? 'true' : undefined}
         aria-haspopup="true"
         onClick={handleClick}
+        sx={{
+          width: 12,
+          height: 20
+        }}
       >
-        <MoreVertIcon sx={{width: {sx: 10}}} />
+        <MoreVertIcon sx={{width: 18, height: 24 }}/>
       </IconButton>
+
       <Menu
         id="long-menu"
         MenuListProps={{

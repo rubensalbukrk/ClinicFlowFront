@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
-import { ItemList } from "../../../../ItemList/ItemList";
-import { AppointsOn } from "../../../../FormAppointsOn/FormAppointsConfirms";
-import { ItemListProps } from "../../../../ItemList/type";
+import { ItemList } from "dashboard/components/ItemList/ItemList";
+import { ItemListProps } from "dashboard/components/ItemList/type";
+import { AppointsOn } from "dashboard/pages/inteligence/components/FormAppointsOn/FormAppointsConfirms";
 
 const FormReturns = () => {
  return (

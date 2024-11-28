@@ -1,12 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useTheme } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Tabs from '@mui/material/Tabs';
+import AppBar from '@mui/material/AppBar';
+import { useTheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 import { FormReceive } from './Tabs/FormReceive/FormReceive';
+import { FormPayable } from './Tabs/FormPayable/FormPayable';
 
 function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
@@ -57,7 +58,7 @@ function AccountTab() {
     <Box sx={{ borderRadius: 1,
      bgcolor: 'background.paper', 
      width: '100%',
-     minWidth: 300
+     minWidth: 320,
      }}
      >
       <AppBar className='rounded-lg' sx={{opacity: 1}} position="static">
@@ -86,7 +87,7 @@ function AccountTab() {
         <FormReceive />
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
-        A PAGAR
+        <FormPayable />
       </TabPanel>
     </Box>
   );

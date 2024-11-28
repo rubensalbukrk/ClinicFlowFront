@@ -8,6 +8,7 @@ interface ItemListProps {
     plan: string
     treatment: string
     variant?: "date" | "price"
+    className?: string
 }
 
 export type {ItemListProps}
