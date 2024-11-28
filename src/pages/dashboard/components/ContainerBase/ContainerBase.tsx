@@ -11,7 +11,9 @@ const ContainerBase: React.FC<ContainerProps> = (props) => {
   return (
         <Box
             sx={{
+              display: 'grid',
               width: "100%",
+              minWidth: 300,
               alignItems: "start",
               borderRadius: 1,
                bgcolor: 'background.paper'

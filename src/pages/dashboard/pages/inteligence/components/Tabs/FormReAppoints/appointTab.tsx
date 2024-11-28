@@ -6,7 +6,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-//@ts-nocheck
+import { FormCloseds } from './Tabs/FormCloseds/FormCloseds';
+import { FormReturns } from './Tabs/FormReturns/FormReturns';
+
 
 function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
@@ -82,10 +84,11 @@ function FormAppointsTab() {
       </AppBar>
 
       <TabPanel value={value} index={0} dir={theme.direction}>
-       LISTA DE CANCELADOS
+      <FormCloseds />
       </TabPanel>
+      
       <TabPanel value={value} index={1} dir={theme.direction}>
-        ALERTA DE RETORNO
+        <FormReturns />
       </TabPanel>
     </Box>
   );

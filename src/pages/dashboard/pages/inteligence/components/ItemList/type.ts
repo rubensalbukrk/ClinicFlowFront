@@ -1,4 +1,4 @@
-interface ItemListAppointsConfirmProps {
+interface ItemListProps {
     name: string
     avatar: string
     phone: string
@@ -7,6 +7,7 @@ interface ItemListAppointsConfirmProps {
     medic: string
     plan: string
     treatment: string
-    variant: "date" | "price"
+    variant?: "date" | "price"
 }
-export type {  ItemListAppointsConfirmProps }
+
+export type {ItemListProps}

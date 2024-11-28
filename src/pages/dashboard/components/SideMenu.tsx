@@ -34,6 +34,7 @@ export default function SideMenu() {
           backgroundColor: "background.paper",
         },
       }}
+      
     >
 
         <Stack

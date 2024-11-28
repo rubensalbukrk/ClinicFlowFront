@@ -17,7 +17,7 @@ const options = [
     },
     {
         id: 2,
-        title: 'Recusar',
+        title: 'Cancelar',
         icon: CheckIcon,
         action: () => alert(`AÇÃO para RECUSAR`)
     },
@@ -44,6 +44,9 @@ export default function OptionsMenu(props: any) {
   return (
     <div>
       <IconButton
+      sx={{
+        width: {sm: 12}
+      }}
         aria-label="more"
         id="long-button"
         aria-controls={open ? 'long-menu' : undefined}
@@ -51,7 +54,7 @@ export default function OptionsMenu(props: any) {
         aria-haspopup="true"
         onClick={handleClick}
       >
-        <MoreVertIcon />
+        <MoreVertIcon sx={{width: {sx: 10}}} />
       </IconButton>
       <Menu
         id="long-menu"

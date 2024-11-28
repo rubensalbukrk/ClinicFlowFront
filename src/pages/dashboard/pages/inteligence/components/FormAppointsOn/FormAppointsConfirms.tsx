@@ -1,10 +1,11 @@
 import { ContainerBase } from "dashboard/components/ContainerBase/ContainerBase";
-import { ItemListAppointsConfirmProps } from "../../types";
-import { AppointItemList } from "./components/ItemList/ItemList";
+import { Button, Typography } from "@mui/material";
+import { ItemList } from "../ItemList/ItemList";
+import { ItemListProps } from "../ItemList/type";
 
-
-const itemsAPI: ItemListAppointsConfirmProps[] = [
+export const AppointsOn: ItemListProps[] = [
   {
+    avatar: `https://i.pravatar.cc/100?u=${Math.random()}`,
     name: "John Doe",
     phone: "(12) 97456-7890",
     date: new Date('2024-12-15'),
@@ -14,6 +15,7 @@ const itemsAPI: ItemListAppointsConfirmProps[] = [
     treatment: "Ortodontia"
   },
   {
+    avatar: `https://i.pravatar.cc/100?u=${Math.random()}`,
     name: "Jane Smith",
     phone: "(83) 91654-3210",
     date: new Date('2024-12-18'),
@@ -23,6 +25,7 @@ const itemsAPI: ItemListAppointsConfirmProps[] = [
     treatment: "Limpeza dental"
   },
   {
+    avatar: `https://i.pravatar.cc/100?u=${Math.random()}`,
     name: "Carlos Silva",
     phone: "(21) 98765-4321",
     date: new Date('2024-12-20'),
@@ -36,11 +39,17 @@ const itemsAPI: ItemListAppointsConfirmProps[] = [
 const FormAppointsConfirm = () => {
   return (
     <ContainerBase title="CONSULTAS A CONFIRMAR">
-      {itemsAPI.map((item: ItemListAppointsConfirmProps) => {
+      {AppointsOn.map((item: ItemListProps) => {
         return (
-          <AppointItemList {...item} key={item.phone} />
+          <ItemList {...item} key={item.phone} />
         )
       })}
+
+      <Button sx={{mt: 3}} variant="outlined" color="success">
+        <Typography fontWeight={700} color="success">
+          VER MAIS
+        </Typography>
+      </Button>
     </ContainerBase>
   );
 };

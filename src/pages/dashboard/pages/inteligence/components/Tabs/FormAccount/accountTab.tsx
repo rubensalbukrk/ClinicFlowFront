@@ -6,6 +6,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { FormReceive } from './Tabs/FormReceive/FormReceive';
 
 function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
@@ -53,7 +54,12 @@ function AccountTab() {
   };
 
   return (
-    <Box sx={{ borderRadius: 1, bgcolor: 'background.paper', width: '100%' }}>
+    <Box sx={{ borderRadius: 1,
+     bgcolor: 'background.paper', 
+     width: '100%',
+     minWidth: 300
+     }}
+     >
       <AppBar className='rounded-lg' sx={{opacity: 1}} position="static">
       <Typography
               fontSize={20}
@@ -77,7 +83,7 @@ function AccountTab() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0} dir={theme.direction}>
-        A RECEBER
+        <FormReceive />
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
         A PAGAR

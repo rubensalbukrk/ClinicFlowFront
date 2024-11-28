@@ -24,9 +24,13 @@ const Intelligence = () => {
     return (
       <Grid
         container
-        spacing={6}
+        spacing={3}
         columns={12}
-        sx={{ width: '100%', mb: (theme) => theme.spacing(2) }}
+        sx={{ width: '100%',
+          mx: 0, 
+          mb: (theme) => theme.spacing(2),
+          justifyContent: 'center',
+        }}
       >
         {/**** CONSULTAS ****/}
         <Grid
@@ -34,7 +38,7 @@ const Intelligence = () => {
           spacing={4}
           sx={{ 
             display: "flex", alignItems: "start" }}
-          size={{ xs: 12, md: 7, sm: 12 }}
+          size={{ xs: 12, md: 7}}
         >
           <FormAppointsConfirm />
           <FormAppointsTab />
@@ -43,9 +47,9 @@ const Intelligence = () => {
         <Grid
           direction="column"
           container
-          spacing={4}
+          spacing={2}
           sx={{display: "flex", flexDirection: 'column'}}
-          size={{ xs: 12, md: 5 }}
+          size={{ xs: 12, md: 4, sm: 10 }}
         >
           <AccountTab />
           <FormPacients />
@@ -87,7 +91,7 @@ const Intelligence = () => {
             <Tab label="PERFORMANCE" value="2" />
           </TabList>
         </Box>
-        <TabPanel value="1">
+        <TabPanel sx={{py: 5, px: 0}} value="1">
           <TabContentTask />
         </TabPanel>
         <TabPanel value="2">
