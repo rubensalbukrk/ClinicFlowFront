@@ -1,10 +1,16 @@
 import { Box, colors, Typography, useTheme } from "@mui/material"
+import React from "react"
 
-const Price = ( props: {price: string}  )=> {
+interface PriceProps {
+  price: string
+  className?: string
+}
+
+const Price: React.FC<PriceProps> = ({price, className})=> {
     const theme = useTheme()
 return (
         <Box 
-        className={`self-center items-center shadow-md rounded-lg shadow-green-300/90 ring-1 ring-offset-black ring-offset-0 ring-green-700/20 
+        className={`${className} self-center items-center shadow-md rounded-lg shadow-green-300/90 ring-1 ring-offset-black ring-offset-0 ring-green-700/20 
             ${theme.palette.mode === 'dark' 
                 ? "text-green-500 bg-transparent py-1 shadow-sm" 
                 : " text-white shadow-green-700/60 bg-green-500"}`}
@@ -15,9 +21,10 @@ return (
           <Typography
           sx={{
             py: {md: 0.4},
-            fontSize: {md: 15, sm: 18, xs: 14}
+            fontSize: {md: 15, sm: 18, xs: 14},
+            color: 'white'
           }}>
-          R$ {props.price}
+          R$ {price}
           </Typography>
         </Box>
     );
