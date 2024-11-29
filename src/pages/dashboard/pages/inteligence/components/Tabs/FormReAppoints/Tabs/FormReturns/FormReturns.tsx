@@ -7,7 +7,7 @@ const FormReturns = () => {
  return (
    <Box sx={{width: '100%'}}>
         {AppointsOn.map((item: ItemListProps) => {
-            return <ItemList variant="price" {...item} />
+            return <ItemList menuType="reAppointsReturn" variant="price" {...item} />
         })}
    </Box>
  );

@@ -13,6 +13,7 @@ const ItemList: React.FC<ItemListProps> = (props: ItemListProps) => {
     date,
     medic,
     variant = "date",
+    menuType,
     className,
   } = props;
   return (
@@ -57,7 +58,7 @@ const ItemList: React.FC<ItemListProps> = (props: ItemListProps) => {
       </Box>
 
       <Box className="">
-        <OptionsMenu appoint={props} />
+        <OptionsMenu menuType={menuType} appoint={props} />
       </Box>
     </Box>
   );

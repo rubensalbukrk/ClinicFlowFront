@@ -6,7 +6,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { FormCloseds } from './Tabs/FormCloseds/FormCloseds';
+import { FormCanceled } from './Tabs/FormCanceled/FormCanceled';
 import { FormReturns } from './Tabs/FormReturns/FormReturns';
 
 
@@ -84,7 +84,7 @@ function FormAppointsTab() {
       </AppBar>
 
       <TabPanel value={value} index={0} dir={theme.direction}>
-      <FormCloseds />
+      <FormCanceled />
       </TabPanel>
       
       <TabPanel value={value} index={1} dir={theme.direction}>

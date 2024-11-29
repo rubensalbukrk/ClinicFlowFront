@@ -9,6 +9,7 @@ interface ItemListProps {
     treatment: string
     variant?: "date" | "price"
     className?: string
+    menuType?: "appointsConfirm" | "reAppointsReturn" | "reAppointsCancel" | "accountPay" | "accountReceive"
 }
 
 export type {ItemListProps}

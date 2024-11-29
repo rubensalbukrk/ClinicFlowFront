@@ -4,30 +4,94 @@ import Menu from '@mui/material/Menu';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CheckIcon from '@mui/icons-material/Check';
 import { MenuItem } from '@mui/material';
-import { ItemListAppointsConfirmProps } from 'src/pages/dashboard/pages/inteligence/types';
+import { ItemListProps } from 'src/pages/dashboard/pages/inteligence/types';
 
-const options = [
+
+const accountReceiveOptions = [
+  {
+      id: 1,
+      title: 'Confirmar',
+      icon: CheckIcon,
+      action: (appoint: ItemListProps) => {
+          alert(`RECEBER DE ${appoint.name}`)
+      }
+  },
+  {
+      id: 2,
+      title: 'Cancelar',
+      icon: CheckIcon,
+      action: () => alert(`CANCELAR RECEBIMENTO`)
+  }
+];
+const accountPayOptions = [
     {
         id: 1,
-        title: 'Aceitar',
+        title: 'Pagar',
         icon: CheckIcon,
-        action: (appoint: ItemListAppointsConfirmProps) => {
-            alert(`AÇÃO para: ${appoint.name}`)
+        action: (appoint: ItemListProps) => {
+            alert(`PAGAR para ${appoint.name}`)
         }
     },
     {
         id: 2,
         title: 'Cancelar',
         icon: CheckIcon,
-        action: () => alert(`AÇÃO para RECUSAR`)
-    },
-    {
-        id: 3,
-        title: 'Ver mais',
-        icon: CheckIcon,
-        action: () => alert(`AÇÃO para: VER MAIS}`)
+        action: (appoint: ItemListProps) => alert(`CANCELAR PAGAMENTO DE ${appoint.name}`)
     }
 ];
+const appointsConfirmOptions = [
+  {
+      id: 1,
+      title: 'Confirmar',
+      icon: CheckIcon,
+      action: (appoint: ItemListProps) => {
+          alert(`CONFIRMAR para: ${appoint.name}`)
+      }
+  },
+  {
+      id: 2,
+      title: 'Cancelar',
+      icon: CheckIcon,
+      action: () => alert(`AÇÃO para CANCELAR`)
+  }
+];
+const reAppointsReturnOptions = [
+  {
+      id: 1,
+      title: 'Reagendar',
+      icon: CheckIcon,
+      action: (appoint: ItemListProps) => {
+          alert(`REAGENDAR para: ${appoint.name}`)
+      }
+  },
+  {
+      id: 2,
+      title: 'Excluir',
+      icon: CheckIcon,
+      action: (appoint: ItemListProps) => {
+        alert(`EXCLUIR para: ${appoint.name}`)
+      }
+  }
+];
+const reAppointsCancelOptions = [
+  {
+      id: 1,
+      title: 'Reagendar',
+      icon: CheckIcon,
+      action: (appoint: ItemListProps) => {
+          alert(`REAGENDAR para: ${appoint.name}`)
+      }
+  },
+  {
+      id: 2,
+      title: 'Ignorar',
+      icon: CheckIcon,
+      action: (appoint: ItemListProps) => {
+        alert(`IGNORAR para: ${appoint.name}`)
+      }
+  }
+];
+
 
 const ITEM_HEIGHT = 48;
 
@@ -41,6 +105,27 @@ export default function OptionsMenu(props: any) {
     setAnchorEl(null);
   };
 
+  let menus;
+  switch (props.menuType) {
+    case "accountReceive":
+      menus = accountReceiveOptions;
+      break;
+    case "accountPay":
+      menus = accountPayOptions;
+      break;
+    case "appointsConfirm":
+      menus = appointsConfirmOptions;
+      break;
+    case "reAppointsCancel":
+      menus = reAppointsCancelOptions;
+      break;
+    case "reAppointsReturn":
+      menus = reAppointsReturnOptions;
+      break;
+    default:
+      menus = undefined; // Ou algum valor padrão
+      break;
+  }
   return (
     <div>
       <IconButton
@@ -75,8 +160,8 @@ export default function OptionsMenu(props: any) {
           },
         }}
       >
-        {options.map((option) => (
-          <MenuItem key={option.id} onClick={() => [ handleClose(), option.action(props.appoint)]}>
+        {menus?.map((option) => (
+          <MenuItem key={option.id} onClick={() => [ handleClose(), option.action(props?.appoint)]}>
             {option.title}
           </MenuItem>
         ))}

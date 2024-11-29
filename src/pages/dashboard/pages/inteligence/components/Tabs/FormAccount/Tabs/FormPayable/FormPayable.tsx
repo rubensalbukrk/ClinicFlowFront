@@ -10,7 +10,7 @@ const FormPayable = () => {
      flexDirection: 'column'
      }}>
         {AppointsOn.map((item: ItemListProps) => {
-            return <ItemList variant="price" {...item} />
+            return <ItemList menuType="accountPay" variant="price" {...item} />
         })}
          <ButtonMore onClick={() => alert('VER CONTAS A PAGAR')} />
    </Box>

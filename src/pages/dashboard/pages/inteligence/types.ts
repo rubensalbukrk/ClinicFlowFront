@@ -1,4 +1,6 @@
-interface ItemListAppointsConfirmProps {
+
+
+interface ItemListProps {
     name: string
     avatar: string
     phone: string
@@ -8,5 +10,6 @@ interface ItemListAppointsConfirmProps {
     plan: string
     treatment: string
     variant: "date" | "price"
+    menuType: "appointsConfirm" | "reAppointsReturn" | "reAppointsCancel" | "account"
 }
-export type {  ItemListAppointsConfirmProps }
+export type {  ItemListProps }

@@ -11,7 +11,7 @@ const FormReceive = () => {
      flexDirection: 'column'
      }}>
         {AppointsOn.map((item: ItemListProps) => {
-            return <ItemList variant="price" {...item} />
+            return <ItemList menuType="accountReceive" variant="price" {...item} />
         })}
          <ButtonMore onClick={() => alert('VER CONTAS A RECEBER')} />
    </Box>

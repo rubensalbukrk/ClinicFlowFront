@@ -40,7 +40,7 @@ const FormAppointsConfirm = () => {
   return (
     <ContainerBase title="CONSULTAS A CONFIRMAR">
       {AppointsOn.map((item: ItemListProps) => {
-        return <ItemList {...item} key={item.phone} />;
+        return <ItemList {...item} menuType="appointsConfirm" key={item.phone} />;
       })}
 
       <ButtonMore onClick={() => alert("VER MAIS CONSULTAS A CONFIRMAR")} />

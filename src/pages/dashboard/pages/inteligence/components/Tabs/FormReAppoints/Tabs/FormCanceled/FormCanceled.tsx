@@ -4,15 +4,15 @@ import {ItemListProps} from 'dashboard/components/ItemList/type'
 import ButtonMore from 'dashboard/components/ButtonMore/ButtonMore'
 import { AppointsOn } from "../../../../FormAppointsOn/FormAppointsConfirms";
 
-const FormCloseds = () => {
+const FormCanceled = () => {
  return (
   <Box sx={{width: '100%'}}>
   {AppointsOn.map((item: ItemListProps) => {
-      return <ItemList variant="price" {...item} />
+      return <ItemList menuType="reAppointsCancel" variant="price" {...item} />
   })}
   <ButtonMore onClick={() => null} />
 </Box>
  );
 }
 
-export {FormCloseds}
+export {FormCanceled}
