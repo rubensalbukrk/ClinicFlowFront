@@ -1,9 +1,9 @@
 import { ContainerBase } from "dashboard/components/ContainerBase/ContainerBase";
 import { ItemList } from "dashboard/components//ItemList/ItemList";
-import { ItemListProps } from "dashboard/components/ItemList/type";
+import { AppointProps } from "dashboard/components/ItemList/type";
 import ButtonMore from "dashboard/components/ButtonMore/ButtonMore"
 
-export const AppointsOn: ItemListProps[] = [
+export const AppointsOn: AppointProps[] = [
   {
     avatar: `https://i.pravatar.cc/100?u=${Math.random()}`,
     name: "John Doe",
@@ -39,8 +39,8 @@ export const AppointsOn: ItemListProps[] = [
 const FormAppointsConfirm = () => {
   return (
     <ContainerBase title="CONSULTAS A CONFIRMAR">
-      {AppointsOn.map((item: ItemListProps) => {
-        return <ItemList {...item} menuType="appointsConfirm" key={item.phone} />;
+      {AppointsOn.map((appoint: AppointProps) => {
+        return <ItemList menuType="appointsConfirm" variant="date" key={appoint.phone} appoint={appoint} />;
       })}
 
       <ButtonMore onClick={() => alert("VER MAIS CONSULTAS A CONFIRMAR")} />

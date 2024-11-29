@@ -1,21 +1,31 @@
 import { Box, Avatar, Typography } from "@mui/material";
 import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
-import OptionsMenu from "./components/OptionsMenu";
+import { OptionsMenu } from './components/OptionsMenu'
 import { Date } from "./components/Date";
-import { ItemListProps } from "./type";
+import { AppointProps, menuTypeProps, variantProps } from "./type";
 import { Price } from "./components/Price";
 
-const ItemList: React.FC<ItemListProps> = (props: ItemListProps) => {
+interface ItemListProps {
+  appoint: AppointProps
+  variant: variantProps
+  menuType: menuTypeProps
+  className?: string
+}
+
+const ItemList: React.FC<ItemListProps> = (
+  {
+    appoint, 
+    variant = "date",
+    className,
+    menuType
+  }) => {
   const {
     avatar,
     name,
     phone,
     date,
     medic,
-    variant = "date",
-    menuType,
-    className,
-  } = props;
+  } = appoint;
   return (
     <Box
       className={className}
@@ -58,7 +68,7 @@ const ItemList: React.FC<ItemListProps> = (props: ItemListProps) => {
       </Box>
 
       <Box className="">
-        <OptionsMenu menuType={menuType} appoint={props} />
+        <OptionsMenu menuType={menuType} appoint={appoint} />
       </Box>
     </Box>
   );

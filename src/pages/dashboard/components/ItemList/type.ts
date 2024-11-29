@@ -1,4 +1,4 @@
-interface ItemListProps {
+interface AppointProps {
     name: string
     avatar: string
     phone: string
@@ -7,9 +7,9 @@ interface ItemListProps {
     medic: string
     plan: string
     treatment: string
-    variant?: "date" | "price"
-    className?: string
-    menuType?: "appointsConfirm" | "reAppointsReturn" | "reAppointsCancel" | "accountPay" | "accountReceive"
 }
 
-export type {ItemListProps}
+type variantProps = "date" | "price" | "price-pay";
+type menuTypeProps = "appointsConfirm" | "reAppointsReturn" | "reAppointsCancel" | "accountPay" | "accountReceive"
+
+export type {AppointProps, menuTypeProps, variantProps}
