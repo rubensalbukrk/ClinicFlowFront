@@ -5,6 +5,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CheckIcon from '@mui/icons-material/Check';
 import { MenuItem } from '@mui/material';
 import {AppointProps} from 'dashboard/components/ItemList/type'
+import { InvoiceProps } from 'src/pages/dashboard/types/InvoiceProps';
 
 
 const accountReceiveOptions = [
@@ -12,7 +13,7 @@ const accountReceiveOptions = [
       id: 1,
       title: 'Confirmar',
       icon: CheckIcon,
-      action: (appoint: AppointProps) => {
+      action: (appoint: AppointProps | InvoiceProps) => {
           alert(`RECEBER DE ${appoint.name}`)
       }
   },
@@ -28,24 +29,56 @@ const accountPayOptions = [
         id: 1,
         title: 'Pagar',
         icon: CheckIcon,
-        action: (appoint: AppointProps) => {
-            alert(`PAGAR para ${appoint.name}`)
+        action: (item: AppointProps | InvoiceProps) => {
+            alert(`PAGAR para ${item.name}`)
         }
     },
     {
         id: 2,
         title: 'Cancelar',
         icon: CheckIcon,
-        action: (appoint: AppointProps) => alert(`CANCELAR PAGAMENTO DE ${appoint.name}`)
+        action: (item: AppointProps | InvoiceProps) => alert(`CANCELAR PAGAMENTO DE ${item.name}`)
     }
+];
+const invoicePlansOptions = [
+  {
+      id: 1,
+      title: 'Ver mais',
+      icon: CheckIcon,
+      action: (item: AppointProps | InvoiceProps) => {
+          alert(`VER MAIS para ${item.name}`)
+      }
+  },
+  {
+      id: 2,
+      title: 'Cancelar',
+      icon: CheckIcon,
+      action: (item: AppointProps | InvoiceProps) => alert(`CANCELAR PAGAMENTO DE ${item.name}`)
+  }
+];
+const invoiceProfessionalsOptions = [
+  {
+      id: 1,
+      title: 'Ver mais',
+      icon: CheckIcon,
+      action: (item: AppointProps | InvoiceProps) => {
+          alert(`VER MAIS para ${item.name}`)
+      }
+  },
+  {
+      id: 2,
+      title: 'Cancelar',
+      icon: CheckIcon,
+      action: (item: AppointProps | InvoiceProps) => alert(`CANCELAR PAGAMENTO DE ${item.name}`)
+  }
 ];
 const appointsConfirmOptions = [
   {
       id: 1,
       title: 'Confirmar',
       icon: CheckIcon,
-      action: (appoint: AppointProps) => {
-          alert(`CONFIRMAR para: ${appoint.name}`)
+      action: (item: AppointProps | InvoiceProps) => {
+          alert(`CONFIRMAR para: ${item.name}`)
       }
   },
   {
@@ -60,16 +93,16 @@ const reAppointsReturnOptions = [
       id: 1,
       title: 'Reagendar',
       icon: CheckIcon,
-      action: (appoint: AppointProps) => {
-          alert(`REAGENDAR para: ${appoint.name}`)
+      action: (item: AppointProps | InvoiceProps) => {
+          alert(`REAGENDAR para: ${item.name}`)
       }
   },
   {
       id: 2,
       title: 'Excluir',
       icon: CheckIcon,
-      action: (appoint: AppointProps) => {
-        alert(`EXCLUIR para: ${appoint.name}`)
+      action: (item: AppointProps | InvoiceProps) => {
+        alert(`EXCLUIR para: ${item.name}`)
       }
   }
 ];
@@ -78,27 +111,27 @@ const reAppointsCancelOptions = [
       id: 1,
       title: 'Reagendar',
       icon: CheckIcon,
-      action: (appoint: AppointProps) => {
-          alert(`REAGENDAR para: ${appoint.name}`)
+      action: (item: AppointProps | InvoiceProps) => {
+          alert(`REAGENDAR para: ${item.name}`)
       }
   },
   {
       id: 2,
       title: 'Ignorar',
       icon: CheckIcon,
-      action: (appoint: AppointProps) => {
-        alert(`IGNORAR para: ${appoint.name}`)
+      action: (item: AppointProps | InvoiceProps) => {
+        alert(`IGNORAR para: ${item.name}`)
       }
   }
 ];
 const ITEM_HEIGHT = 48;
 
 interface OptionsMenuProps {
-  appoint: AppointProps
-  menuType: "appointsConfirm" | "reAppointsReturn" | "reAppointsCancel" | "accountPay" | "accountReceive"
+  item: AppointProps | InvoiceProps
+  menuType: "appointsConfirm" | "accountPay" | "accountReceive" | "invoiceProfessionals" | "invoicePlans" | "reAppointsReturn" | "reAppointsCancel" 
 }
 
-const OptionsMenu: React.FC<OptionsMenuProps> = ({appoint, menuType}) => {
+const OptionsMenu: React.FC<OptionsMenuProps> = ({item, menuType}) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   
@@ -120,6 +153,12 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({appoint, menuType}) => {
     case "appointsConfirm":
       menus = appointsConfirmOptions;
       break;
+    case "invoiceProfessionals":
+      menus = invoiceProfessionalsOptions;
+      break;
+    case "invoicePlans":
+        menus = invoicePlansOptions;
+        break;  
     case "reAppointsCancel":
       menus = reAppointsCancelOptions;
       break;
@@ -165,7 +204,7 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({appoint, menuType}) => {
         }}  
       >
         {menus?.map((option) => (
-          <MenuItem key={option.id} onClick={() => [ handleClose(), option.action(appoint)]}>
+          <MenuItem key={option.id} onClick={() => [ handleClose(), option.action(item)]}>
             {option.title}
           </MenuItem>
         ))}

@@ -1,15 +1,15 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import AppBar from '@mui/material/AppBar';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import { TabPanelProps } from 'dashboard/types/TabPanels';
 import { FormReceive } from './Tabs/FormReceive/FormReceive';
 import { FormPayable } from './Tabs/FormPayable/FormPayable';
 
-function TabPanel(props: any) {
+const TabPanel: React.FC<TabPanelProps> = (props) => {
   const { children, value, index, ...other } = props;
 
   return (
@@ -28,14 +28,6 @@ function TabPanel(props: any) {
     </div>
   );
 }
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-  dir: undefined
-};
-
 function a11yProps(index: unknown) {
   return {
     id: `full-width-tab-${index}`,
@@ -43,12 +35,12 @@ function a11yProps(index: unknown) {
   };
 }
 
-function AccountTab() {
+function TabFormAccount() {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (
-    event: React.SyntheticEvent,
+    _event: React.SyntheticEvent,
     newValue: number
   ) => {
     setValue(newValue);
@@ -93,4 +85,4 @@ function AccountTab() {
   );
 }
 
-export {AccountTab}
+export {TabFormAccount}

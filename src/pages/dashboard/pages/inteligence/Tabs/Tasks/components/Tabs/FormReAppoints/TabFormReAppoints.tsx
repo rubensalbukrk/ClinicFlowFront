@@ -1,16 +1,15 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { useTheme } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
+import AppBar from '@mui/material/AppBar';
+import { useTheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+import { TabPanelProps } from 'dashboard/types/TabPanels';
 import { FormCanceled } from './Tabs/FormCanceled/FormCanceled';
 import { FormReturns } from './Tabs/FormReturns/FormReturns';
 
-
-function TabPanel(props: any) {
+const TabPanel: React.FC<TabPanelProps> = (props) => {
   const { children, value, index, ...other } = props;
 
   return (
@@ -30,13 +29,6 @@ function TabPanel(props: any) {
   );
 }
 
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-  dir: undefined
-};
-
 function a11yProps(index: unknown) {
   return {
     id: `full-width-tab-${index}`,
@@ -49,7 +41,7 @@ function FormAppointsTab() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (
-    event: React.SyntheticEvent,
+    _event: React.SyntheticEvent,
     newValue: number
   ) => {
     setValue(newValue);

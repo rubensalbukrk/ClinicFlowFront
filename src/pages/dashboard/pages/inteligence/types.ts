@@ -1,5 +1,4 @@
 
-
 interface ItemListProps {
     name: string
     avatar: string

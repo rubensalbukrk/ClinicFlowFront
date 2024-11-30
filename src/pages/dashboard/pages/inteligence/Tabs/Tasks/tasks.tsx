@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid2";
 import { FormPacients } from "./components/FormPacients/FormPacients";
-import { AccountTab } from "./components/Tabs/FormAccount/accountTab";
-import { FormAppointsTab } from "./components/Tabs/FormReAppoints/appointTab";
+import { TabFormAccount } from "./components/Tabs/FormAccount/TabFormAccount";
+import { FormAppointsTab } from "./components/Tabs/FormReAppoints/TabFormReAppoints";
 import { FormAppointsConfirm } from "./components/FormAppointsOn/FormAppointsConfirms";
 
 const TabContentTask = () => {
@@ -35,7 +35,7 @@ const TabContentTask = () => {
           sx={{display: "flex", flexDirection: 'column'}}
           size={{ xs: 12, md: 4, sm: 10 }}
         >
-          <AccountTab />
+          <TabFormAccount />
           <FormPacients />
         </Grid>
 

@@ -1,4 +1,5 @@
 import Grid from '@mui/material/Grid2'
+import { TabFormFatura } from './components/FormFatura/TabFormFatura';
 
 const TabContentPerformance = () => {
     return (
@@ -9,7 +10,7 @@ const TabContentPerformance = () => {
         sx={{ mb: (theme) => theme.spacing(2) }}
       >
         <Grid size={{ xs: 12, md: 6 }}>
-         
+         <TabFormFatura />
         </Grid>
 
         <Grid size={{ xs: 12, md: 6 }}>
