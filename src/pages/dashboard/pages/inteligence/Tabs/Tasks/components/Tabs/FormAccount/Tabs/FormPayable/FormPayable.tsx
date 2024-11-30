@@ -18,7 +18,7 @@ const FormPayable = () => {
         return (
           <ItemList
             menuType="accountPay"
-            variant="price-pay"
+            variant="pay"
             appoint={appoint}
           />
         );

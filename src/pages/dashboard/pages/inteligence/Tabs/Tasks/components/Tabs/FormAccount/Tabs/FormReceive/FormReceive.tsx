@@ -13,7 +13,7 @@ const FormReceive = () => {
      flexDirection: 'column'
      }}>
         {dataAPI.map((appoint: AppointProps) => {
-            return <ItemList menuType="accountReceive" variant="price" appoint={appoint}/>
+            return <ItemList menuType="accountReceive" variant="receive" appoint={appoint}/>
         })}
          <ButtonMore onClick={() => alert('VER CONTAS A RECEBER')} />
    </Box>

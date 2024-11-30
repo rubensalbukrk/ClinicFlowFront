@@ -9,7 +9,7 @@ interface AppointProps {
     treatment: string
 }
 
-type variantProps = "date" | "price" | "price-pay";
+type variantProps = "date" | "receive" | "pay";
 type menuTypeProps = "appointsConfirm" | "reAppointsReturn" | "reAppointsCancel" | "accountPay" | "accountReceive"
 
 export type {AppointProps, menuTypeProps, variantProps}

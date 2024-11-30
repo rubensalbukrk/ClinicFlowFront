@@ -58,19 +58,14 @@ const ItemList: React.FC<ItemListProps> = ({
 
       {/* Exibição condicional da data ou preço */}
       <Box>
-        {variant === "date" && <Date date={date} medic={medic} />}
-        {variant === "price" || variant === "price-pay" ? (
-          <Price
-            className={`${
-              variant === "price-pay" ? "bg-red-500/80 shadow-red-500/50" : "bg-green-600"
-            }`}
-            price="250,00"
-          />
-        ) : null}
+        {variant === "date" ? <Date date={date} medic={medic} /> 
+        :
+        <Price variant={variant} price="250,00" />
+        }
       </Box>
 
       <Box className="">
-        <OptionsMenu menuType={menuType} appoint={appoint} />
+        <OptionsMenu menuType={menuType} item={appoint} />
       </Box>
     </Box>
   );
