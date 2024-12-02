@@ -1,5 +1,6 @@
 import Grid from '@mui/material/Grid2'
 import { TabFormFatura } from './components/FormFatura/TabFormFatura';
+import { FormFinance } from './components/FormFinance/FormFinance';
 
 const TabContentPerformance = () => {
     return (
@@ -14,7 +15,7 @@ const TabContentPerformance = () => {
         </Grid>
 
         <Grid size={{ xs: 12, md: 6 }}>
-         
+         <FormFinance />
         </Grid>
       </Grid>
     );
