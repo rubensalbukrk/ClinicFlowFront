@@ -6,10 +6,14 @@ import { FormConsultations } from './components/FormConsultations/FormConsultati
 const TabContentPerformance = () => {
     return (
       <Grid
-        container
+      container
         spacing={2}
         columns={12}
-        sx={{ mb: (theme) => theme.spacing(2) }}
+        sx={{ width: '100%',
+          mx: 0, 
+          mb: (theme) => theme.spacing(2),
+          justifyContent: 'center',
+        }}
       >
         <Grid size={{ xs: 12, md: 7 }}>
          <TabFormFatura />
@@ -19,7 +23,7 @@ const TabContentPerformance = () => {
          <FormFinance />
         </Grid>
 
-        <Grid className="w-full">
+        <Grid size={{xs: 12, md: 12}} >
           <FormConsultations />
         </Grid>
       </Grid>

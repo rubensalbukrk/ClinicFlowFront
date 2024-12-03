@@ -47,10 +47,8 @@ function TabFormFatura() {
   };
 
   return (
-    <Box sx={{ borderRadius: 1,
+    <Box sx={{ width: '100%', borderRadius: 1,
      bgcolor: 'background.paper', 
-     width: '100%',
-     minWidth: 320,
      }}
      >
       <AppBar className='rounded-lg' sx={{opacity: 1}} position="static">

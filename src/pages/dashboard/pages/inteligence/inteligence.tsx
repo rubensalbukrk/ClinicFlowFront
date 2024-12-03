@@ -33,7 +33,7 @@ const Intelligence = () => {
         <TabPanel sx={{py: 5, px: 0}} value="1">
           <TabContentTask />
         </TabPanel>
-        <TabPanel value="2">
+        <TabPanel sx={{py: 5, px: 0}} value="2">
           <TabContentPerformance />
         </TabPanel>
       </TabContext>

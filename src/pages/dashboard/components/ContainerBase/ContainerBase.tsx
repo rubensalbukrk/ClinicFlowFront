@@ -3,14 +3,16 @@ import React from 'react'
 
 type ContainerProps = {
   title?: string
+  direction?: "column" | "row"
   children?: React.ReactNode
 }
 
 const ContainerBase: React.FC<ContainerProps> = (props) => {
-  const {title, children} = props;
+  const {title, direction, children} = props;
   return (
         <Box
-            sx={{
+        flexDirection={direction === "column" ? "column" : "row" }
+            sx={{ 
               display: 'grid',
               width: "100%",
               minWidth: 300,
