@@ -24,6 +24,8 @@ interface ButtonFieldProps
   setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+const currentYear = dayjs();
+
 function ButtonField(props: ButtonFieldProps) {
   const {
     setOpen,
@@ -46,20 +48,22 @@ function ButtonField(props: ButtonFieldProps) {
       startIcon={<CalendarTodayRoundedIcon fontSize="small" />}
       sx={{ minWidth: 'fit-content' }}
     >
-      {label ? `${label}` : 'Pick a date'}
+      {label ? `${label}` : 'Escolha o ano'}
     </Button>
   );
 }
 
 export default function CustomDatePicker() {
-  const [value, setValue] = React.useState<Dayjs | null>(dayjs('2023-04-17'));
+  const [value, setValue] = React.useState<Dayjs | null>(dayjs());
   const [open, setOpen] = React.useState(false);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker
         value={value}
-        label={value == null ? null : value.format('MMM DD, YYYY')}
+        maxDate={currentYear} 
+        yearsOrder="desc"
+        label={value == null ? null : value.format('DD MMM, YYYY')}
         onChange={(newValue) => setValue(newValue)}
         slots={{ field: ButtonField }}
         slotProps={{
@@ -70,7 +74,7 @@ export default function CustomDatePicker() {
         open={open}
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
-        views={['day', 'month', 'year']}
+        views={['year']}
       />
     </LocalizationProvider>
   );

@@ -1,7 +1,5 @@
-import * as React from 'react';
 import MenuButton from './MenuButton';
 import Stack from '@mui/material/Stack';
-import CustomDatePicker from './CustomDatePicker';
 import NavbarBreadcrumbs from './NavbarBreadcrumbs';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import ColorModeIconDropdown from '../components/shared-theme/ColorModeIconDropdown';
@@ -22,7 +20,6 @@ export default function Header() {
     >
       <NavbarBreadcrumbs />
       <Stack direction="row" sx={{ gap: 1 }}>
-        <CustomDatePicker />
         <MenuButton showBadge aria-label="Open notifications">
           <NotificationsRoundedIcon />
         </MenuButton>
