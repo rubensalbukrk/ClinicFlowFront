@@ -11,7 +11,7 @@ export default function MenuContent() {
   return (
     <Stack sx={{ flexGrow: 1, p: 1, justifyContent: "space-between" }}>
       <CostumizedTreeView />
-
+      
       <List dense>
           <ListItem disablePadding sx={{ display: "block" }}>
             <ListItemButton

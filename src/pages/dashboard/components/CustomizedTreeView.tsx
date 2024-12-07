@@ -180,7 +180,7 @@ const MenuItems = [
   },
   {
     id: 2,
-    path: "appoints",
+    path: "appointments",
     icon: EventNote,
     label: "Agendamentos",
   },
@@ -216,7 +216,7 @@ const MenuItems = [
   },
 ];
 
-export default function GmailTreeView() {
+export default function CustomTreeView() {
   return (
     <SimpleTreeView
       aria-label="gmail"

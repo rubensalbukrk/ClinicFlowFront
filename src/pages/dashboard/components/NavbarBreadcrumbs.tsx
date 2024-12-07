@@ -18,7 +18,7 @@ const StyledBreadcrumbs = styled(Breadcrumbs)(({ theme }) => ({
 
 const pageName: {[key: string]: string} = {
   INTELLIGENCE: 'Inteligência',
-  APPOINTS: 'Agendamentos',
+  APPOINTMENTS: 'Agenda',
   PACIENTS: 'Pacientes',
   FINANCE: 'Financeiro',
   STOCK: 'Estoque',
@@ -29,8 +29,8 @@ const pageName: {[key: string]: string} = {
 
 export default function NavbarBreadcrumbs() {
   const {pathname} = useLocation();
-  let page = pathname.replace('/dashboard/', '').toUpperCase();
-  let displayNamePage = pageName[page] || pageName['INTELLIGENCE'];
+  const page = pathname.replace('/dashboard/', '').toUpperCase();
+  const displayNamePage = pageName[page] || pageName['INTELLIGENCE'];
 
   return (
     <StyledBreadcrumbs

@@ -4,13 +4,12 @@ import Home from "./pages/home/home";
 import Auth from "./pages/auth/auth";
 import Manager from "./pages/manager/manager";
 import Services from "./pages/services/services";
-import Appointments from "./pages/appointments/appointments";
 import Dashboard from "./pages/dashboard/Dashboard";
 
 
 import { Intelligence } from "./pages/dashboard/pages/inteligence/inteligence";
 import { Finance } from "./pages/dashboard/pages/finance/finance";
-import { Appoints } from "./pages/dashboard/pages/appoints/appoints";
+import { Appointments } from "./pages/dashboard/pages/appointment/appointment";
 import { Pacients } from "./pages/dashboard/pages/pacients/pacients";
 import { Plans } from "./pages/dashboard/pages/plans/plans";
 import { Anamnesia } from "./pages/dashboard/pages/anamnesia/anamnesia";
@@ -23,7 +22,6 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="*" element={<Home />} />
       <Route path="/auth" element={<Auth />} />
-      <Route path="/appointments" element={<Appointments />} />
       <Route path="/services" element={<Services />} />
       <Route path="/manager" element={<Manager />} />
 
@@ -31,7 +29,7 @@ function App() {
         <Route index element={<Intelligence />} />
         <Route path="*" element={<Intelligence />} />
         <Route path="intelligence" element={<Intelligence />} />
-        <Route path="appoints" element={<Appoints />} />
+        <Route path="appointments" element={<Appointments />} />
         <Route path="pacients" element={<Pacients />} />
         <Route path="finance" element={<Finance />} />
         <Route path="stock" element={<Stock />} />
