@@ -56,9 +56,9 @@ class FormAppointments extends React.PureComponent {
     this.commitChanges = this.commitChanges.bind(this);
   }
 
-  commitChanges({ added, changed, deleted }: {added?: any, changed?: any, deleted?: any}) {
+  commitChanges({ added, changed, deleted }: any) {
     this.setState((state) => {
-      let { data } = state;
+      let { data }: any = state;
       if (added) {
         const startingAddedId =
           data.length > 0 ? data[data.length - 1].id + 1 : 0;
