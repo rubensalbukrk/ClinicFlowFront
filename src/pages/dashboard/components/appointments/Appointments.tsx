@@ -13,7 +13,7 @@ import {
 } from "@devexpress/dx-react-scheduler-material-ui";
 
 
-const appointments = [{
+const appointments: any = [{
   title: 'Limpeza de canal',
   startDate: new Date(2024, 11, 7, 9, 35),
   endDate: new Date(2024, 11, 7, 11, 30),
@@ -42,6 +42,7 @@ const appointments = [{
 },
 ];
 
+
 const date = new Date();
 const formattedDate = date.toISOString().split('T')[0];
 
@@ -55,7 +56,7 @@ class FormAppointments extends React.PureComponent {
     this.commitChanges = this.commitChanges.bind(this);
   }
 
-  commitChanges({ added, changed, deleted }: {added: any, changed: any, deleted: any}) {
+  commitChanges({ added, changed, deleted }: {added?: any, changed: any, deleted: any}) {
     this.setState((state) => {
       let { data } = state;
       if (added) {
