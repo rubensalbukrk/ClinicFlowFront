@@ -13,7 +13,7 @@ import { gray, brand } from '../themePrimitives';
 export const navigationCustomizations: Components<Theme> = {
   MuiMenuItem: {
     styleOverrides: {
-      root: ({ theme }) => ({
+      root: ({ theme }: {theme: any}) => ({
         borderRadius: (theme.vars || theme).shape.borderRadius,
         padding: '6px 8px',
         [`&.${menuItemClasses.focusVisible}`]: {
@@ -35,7 +35,7 @@ export const navigationCustomizations: Components<Theme> = {
           margin: '0 -8px',
         },
       },
-      paper: ({ theme }) => ({
+      paper: ({ theme }: {theme: any}) => ({
         marginTop: '4px',
         borderRadius: (theme.vars || theme).shape.borderRadius,
         border: `1px solid ${(theme.vars || theme).palette.divider}`,
@@ -63,7 +63,7 @@ export const navigationCustomizations: Components<Theme> = {
       )),
     },
     styleOverrides: {
-      root: ({ theme }) => ({
+      root: ({ theme }: {theme: any}) => ({
         borderRadius: (theme.vars || theme).shape.borderRadius,
         border: '1px solid',
         borderColor: gray[200],

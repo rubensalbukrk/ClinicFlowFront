@@ -22,7 +22,7 @@ export const feedbackCustomizations: Components<Theme> = {
   },
   MuiDialog: {
     styleOverrides: {
-      root: ({ theme }) => ({
+      root: ({ theme }: {theme: any}) => ({
         '& .MuiDialog-paper': {
           borderRadius: '10px',
           border: '1px solid',
@@ -33,7 +33,7 @@ export const feedbackCustomizations: Components<Theme> = {
   },
   MuiLinearProgress: {
     styleOverrides: {
-      root: ({ theme }) => ({
+      root: ({ theme }: {theme: any}) => ({
         height: 8,
         borderRadius: 8,
         backgroundColor: gray[200],

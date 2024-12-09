@@ -55,7 +55,7 @@ class FormAppointments extends React.PureComponent {
     this.commitChanges = this.commitChanges.bind(this);
   }
 
-  commitChanges({ added, changed, deleted }) {
+  commitChanges({ added, changed, deleted }: {added: any, changed: any, deleted: any}) {
     this.setState((state) => {
       let { data } = state;
       if (added) {
@@ -79,7 +79,7 @@ class FormAppointments extends React.PureComponent {
   
 
   render() {
-    const { data } = this.state;
+    const { data }: any = this.state;
     console.log(appointments[0].startDate)
     return (
       <Paper>
