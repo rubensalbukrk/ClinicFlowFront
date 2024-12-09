@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material"
+import { Box } from "@mui/material"
 import {FormAppointments} from 'src/pages/dashboard/components/appointments/Appointments'
 
 const Appointments = () => {

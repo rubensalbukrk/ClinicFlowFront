@@ -65,7 +65,7 @@ function FormAppointsTab() {
         className='rounded-lg px-2'
           value={value}
           onChange={handleChange}
-          textColor="base"
+          textColor="inherit"
           indicatorColor="secondary"
           variant="fullWidth"
           aria-label="appoints tabs"

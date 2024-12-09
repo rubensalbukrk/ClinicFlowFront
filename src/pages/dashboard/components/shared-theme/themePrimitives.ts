@@ -1,5 +1,4 @@
 import { createTheme, alpha, PaletteMode, Shadows } from '@mui/material/styles';
-import { slate, white } from 'tailwindcss/colors';
 
 declare module '@mui/material/Paper' {
   interface PaperPropsVariantOverrides {

@@ -15,7 +15,7 @@ import { gray } from '../../components/shared-theme/themePrimitives';
 export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridComponents<Theme> = {
   MuiDataGrid: {
     styleOverrides: {
-      root: ({ theme }) => ({
+      root: ({ theme }: {theme: any}) => ({
         '--DataGrid-overlayHeight': '300px',
         overflow: 'clip',
         borderColor: (theme.vars || theme).palette.divider,
@@ -43,8 +43,8 @@ export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridComp
           },
         },
       }),
-      cell: ({ theme }) => ({ borderTopColor: (theme.vars || theme).palette.divider }),
-      menu: ({ theme }) => ({
+      cell: ({ theme }: {theme: any}) => ({ borderTopColor: (theme.vars || theme).palette.divider }),
+      menu: ({ theme }: {theme: any}) => ({
         borderRadius: theme.shape.borderRadius,
         backgroundImage: 'none',
         [`& .${paperClasses.root}`]: {
@@ -63,7 +63,7 @@ export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridComp
         },
       }),
 
-      row: ({ theme }) => ({
+      row: ({ theme }: {theme: any}) => ({
         '&:last-of-type': { borderBottom: `1px solid ${(theme.vars || theme).palette.divider}` },
         '&:hover': {
           backgroundColor: (theme.vars || theme).palette.action.hover,
@@ -75,7 +75,7 @@ export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridComp
           },
         },
       }),
-      iconButtonContainer: ({ theme }) => ({
+      iconButtonContainer: ({ theme }: {theme: any}) => ({
         [`& .${iconButtonClasses.root}`]: {
           border: 'none',
           backgroundColor: 'transparent',
@@ -96,7 +96,7 @@ export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridComp
           }),
         },
       }),
-      menuIconButton: ({ theme }) => ({
+      menuIconButton: ({ theme }: {theme: any}) => ({
         border: 'none',
         backgroundColor: 'transparent',
         '&:hover': {
@@ -115,11 +115,11 @@ export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridComp
           },
         }),
       }),
-      filterForm: ({ theme }) => ({
+      filterForm: ({ theme }: {theme: any}) => ({
         gap: theme.spacing(1),
         alignItems: 'flex-end',
       }),
-      columnsManagementHeader: ({ theme }) => ({
+      columnsManagementHeader: ({ theme }: {theme: any}) => ({
         paddingRight: theme.spacing(3),
         paddingLeft: theme.spacing(3),
       }),

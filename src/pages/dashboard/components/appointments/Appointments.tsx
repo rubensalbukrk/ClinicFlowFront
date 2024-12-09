@@ -46,7 +46,7 @@ const date = new Date();
 const formattedDate = date.toISOString().split('T')[0];
 
 class FormAppointments extends React.PureComponent {
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.state = {
       data: appointments,
