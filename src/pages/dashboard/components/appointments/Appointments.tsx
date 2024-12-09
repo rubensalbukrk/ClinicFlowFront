@@ -17,6 +17,7 @@ import {
   EditRecurrenceMenu,
 } from "@devexpress/dx-react-scheduler-material-ui";
 
+
 const appointments: Array<AppointmentModel> = [
   {
     title: "Limpeza de canal",
@@ -99,10 +100,10 @@ class FormAppointments extends React.PureComponent {
 
     return (
       <Paper>
-        <Scheduler data={data}>
+        <Scheduler locale="pt-BR" data={data}>
           <ViewState defaultCurrentDate={formattedDate} />
           <EditingState onCommitChanges={this.commitChanges} />
-          <WeekView startDayHour={8} endDayHour={17} />
+          <WeekView  startDayHour={8} endDayHour={17} />
           <MonthView />
           <Appointments />
 
