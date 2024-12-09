@@ -11,11 +11,13 @@ import InputWarning from "../../components/Input/InputWarning/InputWarning";
 import ButtonIcon from "../../components/Button/ButtonIcon/buttonIcon";
 import colors from "tailwindcss/colors";
 import "../../App.css";
+import { useNavigate } from "react-router-dom";
 
 const Auth: React.FC = () => {
   const [warnings, setWarnings] = useState<{ [key: string]: boolean }>({});
   const [email, setEmail] = useState<string>("");
   const [pass, setPass] = useState<string>("");
+  const navigation = useNavigate();
 
   document.title = "Aréa de acesso";
 
@@ -24,6 +26,9 @@ const Auth: React.FC = () => {
       email: !email,
       pass: !pass,
     });
+    if (warnings.email == false || warnings.pass == false){
+      navigation('/dashboard')
+    }
   }
 
   useEffect(() => {
