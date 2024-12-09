@@ -65,14 +65,14 @@ class FormAppointments extends React.PureComponent {
         data = [...data, { id: startingAddedId, ...added }];
       }
       if (changed) {
-        data = data.map((appointment) =>
+        data = data.map((appointment: any) =>
           changed[appointment.id]
             ? { ...appointment, ...changed[appointment.id] }
             : appointment
         );
       }
       if (deleted !== undefined) {
-        data = data.filter((appointment) => appointment.id !== deleted);
+        data = data.filter((appointment: any) => appointment.id !== deleted);
       }
       return { data };
     });
@@ -81,7 +81,7 @@ class FormAppointments extends React.PureComponent {
 
   render() {
     const { data }: any = this.state;
-    console.log(appointments[0].startDate)
+
     return (
       <Paper>
         <Scheduler data={data}>
