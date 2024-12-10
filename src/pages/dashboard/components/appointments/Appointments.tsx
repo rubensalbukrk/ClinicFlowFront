@@ -4,19 +4,21 @@ import {
   ViewState,
   EditingState,
   AppointmentModel,
-  ChangeSet,
+  ChangeSet
 } from "@devexpress/dx-react-scheduler";
 import {
   Scheduler,
-  WeekView,
-  MonthView,
   Appointments,
-  ViewSwitcher,
-  Toolbar,
-  DragDropProvider,
+  AppointmentForm,
+  AppointmentTooltip,
+  WeekView,
   EditRecurrenceMenu,
+  ConfirmationDialog,
+  Toolbar,
+  ViewSwitcher,
+  DragDropProvider,
+  MonthView,
 } from "@devexpress/dx-react-scheduler-material-ui";
-
 
 const appointments: Array<AppointmentModel> = [
   {
@@ -60,17 +62,40 @@ const date = new Date();
 const formattedDate = date.toISOString().split("T")[0];
 
 class FormAppointments extends React.PureComponent {
-  state: { data: AppointmentModel[] };
+  state: {
+    data: AppointmentModel[];
+    addedAppointment: any;
+    appointmentChanges: any;
+    editingAppointment: undefined;
+  };
 
   constructor(props: AppointmentModel) {
     super(props);
     this.state = {
       data: appointments,
+      addedAppointment: {},
+      appointmentChanges: {},
+      editingAppointment: undefined,
     };
 
     this.commitChanges = this.commitChanges.bind(this);
+    this.changeAddedAppointment = this.changeAddedAppointment.bind(this);
+    this.changeAppointmentChanges = this.changeAppointmentChanges.bind(this);
+    this.changeEditingAppointment = this.changeEditingAppointment.bind(this);
+  }
+  changeAddedAppointment(addedAppointment: any) {
+    this.setState({ addedAppointment });
   }
 
+  changeAppointmentChanges(appointmentChanges: any) {
+    this.setState({ appointmentChanges });
+    return this;
+  }
+
+  changeEditingAppointment(editingAppointment: any) {
+    this.setState({ editingAppointment });
+    return this;
+  }
   commitChanges({ added, changed, deleted }: ChangeSet) {
     this.setState((state: AppointmentModel) => {
       let { data }: AppointmentModel = state;
@@ -96,17 +121,42 @@ class FormAppointments extends React.PureComponent {
   }
 
   render() {
-    const { data } = this.state;
+    const { data, addedAppointment, appointmentChanges, editingAppointment } =
+      this.state;
 
     return (
       <Paper>
         <Scheduler locale="pt-BR" data={data}>
           <ViewState defaultCurrentDate={formattedDate} />
-          <EditingState onCommitChanges={this.commitChanges} />
-          <WeekView  startDayHour={8} endDayHour={17} />
-          <MonthView />
-          <Appointments />
 
+          <EditingState
+            onCommitChanges={this.commitChanges}
+            addedAppointment={addedAppointment}
+            onAddedAppointmentChange={this.changeAddedAppointment}
+            appointmentChanges={appointmentChanges}
+            onAppointmentChangesChange={this.changeAppointmentChanges}
+            editingAppointment={editingAppointment}
+            onEditingAppointmentChange={this.changeEditingAppointment}
+          />
+          <WeekView startDayHour={8} endDayHour={17} />
+          <MonthView />
+
+          <EditRecurrenceMenu
+            messages={{
+              menuEditingTitle: "Editar Recorrência",
+              current: "Este agendamento",
+              currentAndFollowing: "Este e seguintes agendamentos",
+              all: "Todos os agendamentos",
+              commitButton: "Salvar",
+              cancelButton: "Cancelar",
+              // Mais mensagens personalizadas, se necessário.
+            }}
+          />
+          <ConfirmationDialog />
+          <Appointments /> 
+          <AppointmentTooltip showOpenButton showDeleteButton />
+          <AppointmentForm />
+  
           <Toolbar />
           <ViewSwitcher
             switcherComponent={(props) => (
@@ -125,17 +175,6 @@ class FormAppointments extends React.PureComponent {
             )}
           />
 
-          <EditRecurrenceMenu
-            messages={{
-              menuEditingTitle: "Editar Recorrência",
-              current: "Este agendamento",
-              currentAndFollowing: "Este e seguintes agendamentos",
-              all: "Todos os agendamentos",
-              commitButton: "Salvar",
-              cancelButton: "Cancelar",
-              // Mais mensagens personalizadas, se necessário.
-            }}
-          />
           <DragDropProvider />
         </Scheduler>
       </Paper>
