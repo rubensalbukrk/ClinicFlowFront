@@ -3,11 +3,9 @@ import {FormAppointments} from 'src/pages/dashboard/components/appointments/Appo
 
 const Appointments = () => {
     return (
-        <>
         <Box sx={{display: 'flex', mr: 'auto'}}>
             <FormAppointments />
         </Box>
-        </>
     )
 }
 

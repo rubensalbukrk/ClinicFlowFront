@@ -4,7 +4,8 @@ import {
   ViewState,
   EditingState,
   AppointmentModel,
-  ChangeSet
+  ChangeSet,
+  IntegratedEditing
 } from "@devexpress/dx-react-scheduler";
 import {
   Scheduler,
@@ -15,9 +16,11 @@ import {
   EditRecurrenceMenu,
   ConfirmationDialog,
   Toolbar,
+  AllDayPanel,
   ViewSwitcher,
   DragDropProvider,
   MonthView,
+  DateNavigator,
 } from "@devexpress/dx-react-scheduler-material-ui";
 
 const appointments: Array<AppointmentModel> = [
@@ -66,7 +69,7 @@ class FormAppointments extends React.PureComponent {
     data: AppointmentModel[];
     addedAppointment: any;
     appointmentChanges: any;
-    editingAppointment: undefined;
+    editingAppointment: any;
   };
 
   constructor(props: AppointmentModel) {
@@ -89,12 +92,10 @@ class FormAppointments extends React.PureComponent {
 
   changeAppointmentChanges(appointmentChanges: any) {
     this.setState({ appointmentChanges });
-    return this;
   }
 
   changeEditingAppointment(editingAppointment: any) {
     this.setState({ editingAppointment });
-    return this;
   }
   commitChanges({ added, changed, deleted }: ChangeSet) {
     this.setState((state: AppointmentModel) => {
@@ -121,8 +122,12 @@ class FormAppointments extends React.PureComponent {
   }
 
   render() {
-    const { data, addedAppointment, appointmentChanges, editingAppointment } =
-      this.state;
+    const { 
+      data, 
+      addedAppointment, 
+      appointmentChanges, 
+      editingAppointment 
+    } = this.state;
 
     return (
       <Paper>
@@ -130,7 +135,10 @@ class FormAppointments extends React.PureComponent {
           <ViewState defaultCurrentDate={formattedDate} />
 
           <EditingState
-            onCommitChanges={this.commitChanges}
+            onCommitChanges={(changes) => {
+              console.log("Changes:", changes);
+              this.commitChanges(changes);
+            }}
             addedAppointment={addedAppointment}
             onAddedAppointmentChange={this.changeAddedAppointment}
             appointmentChanges={appointmentChanges}
@@ -140,22 +148,44 @@ class FormAppointments extends React.PureComponent {
           />
           <WeekView startDayHour={8} endDayHour={17} />
           <MonthView />
+          <AllDayPanel />
+
+          <IntegratedEditing />
 
           <EditRecurrenceMenu
             messages={{
               menuEditingTitle: "Editar Recorrência",
+              menuDeletingTitle: "Você tem certeza que deseja excluir este agendamento?", 
               current: "Este agendamento",
               currentAndFollowing: "Este e seguintes agendamentos",
               all: "Todos os agendamentos",
               commitButton: "Salvar",
-              cancelButton: "Cancelar",
-              // Mais mensagens personalizadas, se necessário.
+              cancelButton: "Cancelar"
             }}
           />
-          <ConfirmationDialog />
+
+          <ConfirmationDialog 
+            messages={{
+            confirmDeleteMessage: 'Você tem certeza que deseja deletar o agendamento?',
+            confirmCancelMessage: 'Você tem certeza que deseja cancelar?',
+            discardButton: 'Discartar',
+            deleteButton: 'Deletar',
+            cancelButton: 'Cancelar'
+          }} />
+
           <Appointments /> 
-          <AppointmentTooltip showOpenButton showDeleteButton />
-          <AppointmentForm />
+          <AppointmentTooltip 
+          showOpenButton 
+          showDeleteButton
+          showCloseButton
+          />
+
+          <AppointmentForm
+            onVisibilityChange={(visible) => console.log('Form visibility:', visible)}
+            messages={{
+              titleLabel: "Titulo"
+            }}
+          />
   
           <Toolbar />
           <ViewSwitcher
@@ -174,7 +204,7 @@ class FormAppointments extends React.PureComponent {
               />
             )}
           />
-
+          <DateNavigator />
           <DragDropProvider />
         </Scheduler>
       </Paper>
