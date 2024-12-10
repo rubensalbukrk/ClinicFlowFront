@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Box from "../../components/Box/box";
 import { CiLock,CiUser  } from "react-icons/ci";
-import { LuUserPlus2 } from "react-icons/lu";
+import { LuUserPlus } from "react-icons/lu";
 import Input from "../../components/Input/Input";
 import Text from "../../components/Text/text";
 import Button from "../../components/Button/button";
@@ -112,7 +112,7 @@ const Auth: React.FC = () => {
             className="w-7/12"
           >
             <ButtonIcon
-              icon={<LuUserPlus2 size={22} color={colors.sky[500]} />}
+              icon={<LuUserPlus size={22} color={colors.sky[500]} />}
             />
           </Button>
         </div>

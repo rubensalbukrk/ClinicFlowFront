@@ -181,7 +181,6 @@ class FormAppointments extends React.PureComponent {
           />
 
           <AppointmentForm
-            onVisibilityChange={(visible) => console.log('Form visibility:', visible)}
             messages={{
               titleLabel: "Titulo"
             }}
