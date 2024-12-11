@@ -3,12 +3,12 @@ import { ContainerBase } from "src/pages/dashboard/components/ContainerBase/Cont
 import { TickConsultChart } from "./components/TickConsultsChart/TickConsultsChart";
 import { Box } from "@mui/material";
 import { CountConsultDetail } from "./components/CountConsultDetails/CountConsultDetails";
-import CustomDatePicker from "dashboard/components/CustomDatePicker";
+import { DataPickerSelect } from "./components/DatePicker/DatePicker";
 
 const FormConsultations = () => {
   return (
     <ContainerBase title="CONSULTAS" direction="column"
-    date={<CustomDatePicker />}
+    date={<DataPickerSelect />}
     >
       <Box className=" w-full flex flex-col justify-between sm:flex-row">
         <Box className="flex flex-col w-full h-32 rounded-lg items-center justify-center">

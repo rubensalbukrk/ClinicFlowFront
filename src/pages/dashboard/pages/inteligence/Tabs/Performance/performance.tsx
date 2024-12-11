@@ -1,4 +1,4 @@
-import Grid from '@mui/material/Grid2'
+import Grid from "@mui/material/Grid2";
 import { TabFormFatura } from './components/FormFatura/TabFormFatura';
 import { FormFinance } from './components/FormFinance/FormFinance';
 import { FormConsultations } from './components/FormConsultations/FormConsultations';
@@ -7,7 +7,7 @@ const TabContentPerformance = () => {
     return (
       <Grid
       container
-        spacing={2}
+        spacing={3}
         columns={12}
         sx={{ width: '100%',
           mx: 0, 
@@ -15,15 +15,15 @@ const TabContentPerformance = () => {
           justifyContent: 'center',
         }}
       >
-        <Grid size={{ xs: 12, md: 7 }}>
+        <Grid container size={{ xs: 12, md: 7 }}>
          <TabFormFatura />
         </Grid>
 
-        <Grid size={{ xs: 12, md: 5 }}>
+        <Grid container size={{ xs: 12, md: 5 }}>
          <FormFinance />
         </Grid>
 
-        <Grid size={{xs: 12, md: 12}} >
+        <Grid container size={{xs: 12, md: 12}} >
           <FormConsultations />
         </Grid>
       </Grid>
