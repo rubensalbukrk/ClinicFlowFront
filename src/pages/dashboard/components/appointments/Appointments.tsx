@@ -107,8 +107,8 @@ class FormAppointments extends React.PureComponent {
       }
       if (changed) {
         data = data.map((appointment: AppointmentModel) =>
-          changed[appointment.id | 0]
-            ? { ...appointment, ...changed[appointment.id | 0] }
+          changed[appointment.id ? appointment.id : 0]
+            ? { ...appointment, ...changed[appointment.id ? appointment.id : 0] }
             : appointment
         );
       }
