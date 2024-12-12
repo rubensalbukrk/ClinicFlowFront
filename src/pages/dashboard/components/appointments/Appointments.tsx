@@ -5,7 +5,7 @@ import {
   EditingState,
   AppointmentModel,
   ChangeSet,
-  IntegratedEditing
+  IntegratedEditing,
 } from "@devexpress/dx-react-scheduler";
 import {
   Scheduler,
@@ -22,6 +22,7 @@ import {
   MonthView,
   DateNavigator,
 } from "@devexpress/dx-react-scheduler-material-ui";
+import { TextField } from "@mui/material";
 
 const appointments: Array<AppointmentModel> = [
   {
@@ -63,6 +64,26 @@ const appointments: Array<AppointmentModel> = [
 
 const date = new Date();
 const formattedDate = date.toISOString().split("T")[0];
+
+const CustomSelectComponent = (props: any) => {
+  const customOptions = [
+    { id: "daily", text: "Dia" },
+    { id: "weekly", text: "Semana" },
+    { id: "monthly", text: "Mês" },
+    { id: "yearly", text: "Ano" },
+  ];
+
+  return <AppointmentForm.Select {...props} availableOptions={customOptions} />;
+};
+
+const CustomTextEditComponent = (props: any) => {
+  if (props.type === "multilineTextEditor") {
+    return (
+      <TextField variant="standard" sx={{display: 'flex', minHeight:100, height: 200}} multiline label="Observações" rows={1} {...props} />
+    )
+  }
+  return <AppointmentForm.TextEditor {...props} />;
+}
 
 class FormAppointments extends React.PureComponent {
   state: {
@@ -108,7 +129,10 @@ class FormAppointments extends React.PureComponent {
       if (changed) {
         data = data.map((appointment: AppointmentModel) =>
           changed[appointment.id ? appointment.id : 0]
-            ? { ...appointment, ...changed[appointment.id ? appointment.id : 0] }
+            ? {
+                ...appointment,
+                ...changed[appointment.id ? appointment.id : 0],
+              }
             : appointment
         );
       }
@@ -122,12 +146,8 @@ class FormAppointments extends React.PureComponent {
   }
 
   render() {
-    const { 
-      data, 
-      addedAppointment, 
-      appointmentChanges, 
-      editingAppointment 
-    } = this.state;
+    const { data, addedAppointment, appointmentChanges, editingAppointment } =
+      this.state;
 
     return (
       <Paper>
@@ -155,37 +175,58 @@ class FormAppointments extends React.PureComponent {
           <EditRecurrenceMenu
             messages={{
               menuEditingTitle: "Editar Recorrência",
-              menuDeletingTitle: "Você tem certeza que deseja excluir este agendamento?", 
+              menuDeletingTitle:
+                "Você tem certeza que deseja excluir este agendamento?",
               current: "Este agendamento",
               currentAndFollowing: "Este e seguintes agendamentos",
               all: "Todos os agendamentos",
               commitButton: "Salvar",
-              cancelButton: "Cancelar"
+              cancelButton: "Cancelar",
             }}
           />
 
-          <ConfirmationDialog 
+          <ConfirmationDialog
             messages={{
-            confirmDeleteMessage: 'Você tem certeza que deseja deletar o agendamento?',
-            confirmCancelMessage: 'Você tem certeza que deseja cancelar?',
-            discardButton: 'Discartar',
-            deleteButton: 'Deletar',
-            cancelButton: 'Cancelar'
-          }} />
-
-          <Appointments /> 
-          <AppointmentTooltip 
-          showOpenButton 
-          showDeleteButton
-          showCloseButton
+              confirmDeleteMessage:
+                "Você tem certeza que deseja deletar o agendamento?",
+              confirmCancelMessage: "Você tem certeza que deseja descartar?",
+              discardButton: "Descartar",
+              deleteButton: "Deletar",
+              cancelButton: "Cancelar",
+            }}
           />
+
+          <Appointments />
+          <AppointmentTooltip showOpenButton showDeleteButton showCloseButton />
 
           <AppointmentForm
+            selectComponent={CustomSelectComponent}
+            textEditorComponent={CustomTextEditComponent}
             messages={{
-              titleLabel: "Titulo"
+              titleLabel: "Ex. Limpeza",
+              detailsLabel: "Detalhes de agendamento",
+              allDayLabel: "Todos os dias",
+              repeatLabel: "Repetir",
+              moreInformationLabel: "Informações adicionais",
+              notesLabel: "",
+
+              repeatEveryLabel: "Repetir cada",
+              daysLabel: "dia(s)",
+              endRepeatLabel: "terminar de repetir",
+              never: "Nunca",
+              onLabel: "Em",
+              occurrencesLabel: "ocorrência(s)",
+              afterLabel: "Após",
+
+              weeksOnLabel: "semana(s) em",
+              monthsLabel: "mês(es)",
+              ofEveryMonthLabel: "de cada mês",
+              theLabel: "",
+              everyLabel: "Toda",
+              yearsLabel: "Ano(s)",
             }}
           />
-  
+
           <Toolbar />
           <ViewSwitcher
             switcherComponent={(props) => (
