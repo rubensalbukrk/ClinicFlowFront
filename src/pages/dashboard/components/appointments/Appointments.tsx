@@ -79,7 +79,13 @@ const CustomSelectComponent = (props: any) => {
 const CustomTextEditComponent = (props: any) => {
   if (props.type === "multilineTextEditor") {
     return (
-      <TextField variant="standard" sx={{display: 'flex', minHeight:100, height: 200}} multiline label="Observações" rows={1} {...props} />
+      <TextField 
+      label="Observações"
+      multiline
+      rows={10}
+      fullWidth
+      variant="filled"
+     {...props} />
     )
   }
   return <AppointmentForm.TextEditor {...props} />;
