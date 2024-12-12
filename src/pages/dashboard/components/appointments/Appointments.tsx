@@ -22,7 +22,7 @@ import {
   MonthView,
   DateNavigator,
 } from "@devexpress/dx-react-scheduler-material-ui";
-import { TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 
 const appointments: Array<AppointmentModel> = [
   {
@@ -65,16 +65,7 @@ const appointments: Array<AppointmentModel> = [
 const date = new Date();
 const formattedDate = date.toISOString().split("T")[0];
 
-const CustomSelectComponent = (props: any) => {
-  const customOptions = [
-    { id: "daily", text: "Dia" },
-    { id: "weekly", text: "Semana" },
-    { id: "monthly", text: "Mês" },
-    { id: "yearly", text: "Ano" },
-  ];
 
-  return <AppointmentForm.Select {...props} availableOptions={customOptions} />;
-};
 
 const CustomTextEditComponent = (props: any) => {
   if (props.type === "multilineTextEditor") {
@@ -90,6 +81,37 @@ const CustomTextEditComponent = (props: any) => {
   }
   return <AppointmentForm.TextEditor {...props} />;
 }
+
+const CustomCommandLayout = ({ onCommitButtonClick, onCancelButtonClick }: any) => (
+  <Box
+  sx={{
+    width: "100%",
+    display: 'flex',
+    alignItems: "center",
+    justifyContent: "space-between",
+    p: 2,
+    bgcolor: 'green',
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10
+  }}
+  >
+    <Button sx={{
+      color: 'white',
+      ":hover": {color: 'black'}
+    }} variant="outlined" onClick={onCancelButtonClick}>
+      X
+    </Button>
+    <Button sx={{
+      color: 'white',
+      ":hover": {
+        color: "black"
+      }
+    }} className="hover:text-black" variant="outlined" onClick={onCommitButtonClick}>
+      SALVAR
+    </Button>
+  </Box>
+);
+
 
 class FormAppointments extends React.PureComponent {
   state: {
@@ -116,11 +138,9 @@ class FormAppointments extends React.PureComponent {
   changeAddedAppointment(addedAppointment: any) {
     this.setState({ addedAppointment });
   }
-
   changeAppointmentChanges(appointmentChanges: any) {
     this.setState({ appointmentChanges });
   }
-
   changeEditingAppointment(editingAppointment: any) {
     this.setState({ editingAppointment });
   }
@@ -161,10 +181,7 @@ class FormAppointments extends React.PureComponent {
           <ViewState defaultCurrentDate={formattedDate} />
 
           <EditingState
-            onCommitChanges={(changes) => {
-              console.log("Changes:", changes);
-              this.commitChanges(changes);
-            }}
+            onCommitChanges={this.commitChanges}
             addedAppointment={addedAppointment}
             onAddedAppointmentChange={this.changeAddedAppointment}
             appointmentChanges={appointmentChanges}
@@ -201,12 +218,14 @@ class FormAppointments extends React.PureComponent {
               cancelButton: "Cancelar",
             }}
           />
-
           <Appointments />
-          <AppointmentTooltip showOpenButton showDeleteButton showCloseButton />
-
-          <AppointmentForm
-            selectComponent={CustomSelectComponent}
+          <AppointmentTooltip 
+            showOpenButton 
+            showDeleteButton 
+            showCloseButton
+          />
+           <AppointmentForm 
+           commandLayoutComponent={CustomCommandLayout}
             textEditorComponent={CustomTextEditComponent}
             messages={{
               titleLabel: "Ex. Limpeza",
@@ -215,7 +234,13 @@ class FormAppointments extends React.PureComponent {
               repeatLabel: "Repetir",
               moreInformationLabel: "Informações adicionais",
               notesLabel: "",
+              
+              daily: "Dias",
+              weekly: "Semanas",
+              monthly: "Mêses",
+              yearly: "Anos",
 
+              commitCommand: "SALVAR",
               repeatEveryLabel: "Repetir cada",
               daysLabel: "dia(s)",
               endRepeatLabel: "terminar de repetir",
@@ -224,15 +249,20 @@ class FormAppointments extends React.PureComponent {
               occurrencesLabel: "ocorrência(s)",
               afterLabel: "Após",
 
+              firstLabel: "Primeiro",
+              secondLabel: "Segundo",
+              thirdLabel: "Terceiro",
+              fourthLabel: "Quarto",
+              lastLabel: "Último",
+
               weeksOnLabel: "semana(s) em",
               monthsLabel: "mês(es)",
               ofEveryMonthLabel: "de cada mês",
-              theLabel: "",
+              theLabel: "De",
               everyLabel: "Toda",
               yearsLabel: "Ano(s)",
             }}
           />
-
           <Toolbar />
           <ViewSwitcher
             switcherComponent={(props) => (
