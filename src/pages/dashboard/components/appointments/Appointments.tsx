@@ -5,7 +5,7 @@ import {
   EditingState,
   AppointmentModel,
   ChangeSet,
-  IntegratedEditing,
+  IntegratedEditing
 } from "@devexpress/dx-react-scheduler";
 import {
   Scheduler,
@@ -23,95 +23,30 @@ import {
   DateNavigator,
 } from "@devexpress/dx-react-scheduler-material-ui";
 import { Box, Button, TextField } from "@mui/material";
+import AppointmentService from "src/services/http/HttpAppointment";
 
-const appointments: Array<AppointmentModel> = [
-  {
-    title: "Limpeza de canal",
-    startDate: new Date(2024, 11, 7, 9, 35),
-    endDate: new Date(2024, 11, 7, 11, 30),
-    id: 0,
-    rRule: "FREQ=DAILY;COUNT=1",
-  },
-  {
-    title: "Clareamento",
-    startDate: new Date(2024, 11, 5, 12, 11),
-    endDate: new Date(2024, 11, 5, 13, 0),
-    id: 1,
-    rRule: "FREQ=DAILY;COUNT=1",
-  },
-  {
-    title: "Remoção de caries",
-    startDate: new Date(2024, 11, 3, 12, 0),
-    endDate: new Date(2024, 11, 3, 13, 30),
-    id: 2,
-    rRule: "FREQ=DAILY;COUNT=1",
-  },
-  {
-    title: "Remoção de caries",
-    startDate: new Date(2024, 11, 2, 9, 30),
-    endDate: new Date(2024, 11, 2, 10, 35),
-    id: 3,
-    rRule: "FREQ=DAILY;COUNT=1",
-  },
-  {
-    title: "Remoção de caries",
-    startDate: new Date(2024, 11, 9, 9, 30),
-    endDate: new Date(2024, 11, 9, 10, 35),
-    id: 4,
-    rRule: "FREQ=DAILY;COUNT=1",
-  },
-];
+const appointmentService = new AppointmentService();
+
+const appointments: Array<AppointmentModel> = await appointmentService.GET();
 
 const date = new Date();
 const formattedDate = date.toISOString().split("T")[0];
 
-
-
 const CustomTextEditComponent = (props: any) => {
   if (props.type === "multilineTextEditor") {
     return (
-      <TextField 
-      label="Observações"
-      multiline
-      rows={10}
-      fullWidth
-      variant="filled"
-     {...props} />
-    )
+      <TextField
+        label="Observações"
+        multiline
+        rows={10}
+        fullWidth
+        variant="filled"
+        {...props}
+      />
+    );
   }
   return <AppointmentForm.TextEditor {...props} />;
-}
-
-const CustomCommandLayout = ({ onCommitButtonClick, onCancelButtonClick }: any) => (
-  <Box
-  sx={{
-    width: "100%",
-    display: 'flex',
-    alignItems: "center",
-    justifyContent: "space-between",
-    p: 2,
-    bgcolor: 'green',
-    borderTopLeftRadius: 10,
-    borderBottomLeftRadius: 10
-  }}
-  >
-    <Button sx={{
-      color: 'white',
-      ":hover": {color: 'black'}
-    }} variant="outlined" onClick={onCancelButtonClick}>
-      X
-    </Button>
-    <Button sx={{
-      color: 'white',
-      ":hover": {
-        color: "black"
-      }
-    }} className="hover:text-black" variant="outlined" onClick={onCommitButtonClick}>
-      SALVAR
-    </Button>
-  </Box>
-);
-
+};
 
 class FormAppointments extends React.PureComponent {
   state: {
@@ -171,6 +106,71 @@ class FormAppointments extends React.PureComponent {
     });
   }
 
+  CustomHeaderButtomLayout = ({
+    onCommitButtonClick,
+    onCancelButtonClick,
+  }: {
+    onCommitButtonClick: () => void
+    onCancelButtonClick: () => void
+  }) => {
+  
+    const handleCommitChanges = async () => {
+      if (!this.state.addedAppointment.id) {
+        await appointmentService
+        .CREATE(this.state.addedAppointment)
+        .finally(() => onCommitButtonClick())
+      }
+      if(this.state.editingAppointment.id){
+        const appointUpdated = {
+          ...this.state.editingAppointment,
+          ...this.state.appointmentChanges,
+        }
+        await appointmentService
+        .UPDATE(appointUpdated)
+        .finally(() => onCommitButtonClick())
+      }
+    }
+  
+    return (
+      <Box
+      sx={{
+        width: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        p: 2,
+        bgcolor: "green",
+        borderTopLeftRadius: 10,
+        borderBottomLeftRadius: 10,
+      }}
+    >
+      <Button
+        sx={{
+          color: "white",
+          ":hover": { color: "black" },
+        }}
+        variant="outlined"
+        onClick={onCancelButtonClick}
+      >
+        X
+      </Button>
+      <Button
+        sx={{
+          color: "white",
+          ":hover": {
+            color: "black",
+          },
+        }}
+        className="hover:text-black"
+        variant="outlined"
+        onClick={handleCommitChanges}
+      >
+        SALVAR
+      </Button>
+    </Box>
+    )
+  };
+
   render() {
     const { data, addedAppointment, appointmentChanges, editingAppointment } =
       this.state;
@@ -219,13 +219,13 @@ class FormAppointments extends React.PureComponent {
             }}
           />
           <Appointments />
-          <AppointmentTooltip 
-            showOpenButton 
-            showDeleteButton 
-            showCloseButton
-          />
-           <AppointmentForm 
-           commandLayoutComponent={CustomCommandLayout}
+          <AppointmentTooltip showOpenButton showDeleteButton showCloseButton />
+          <AppointmentForm
+            commandLayoutComponent={(props: any) => (
+              <this.CustomHeaderButtomLayout
+                {...props}
+              />
+              )}
             textEditorComponent={CustomTextEditComponent}
             messages={{
               titleLabel: "Ex. Limpeza",
@@ -234,7 +234,7 @@ class FormAppointments extends React.PureComponent {
               repeatLabel: "Repetir",
               moreInformationLabel: "Informações adicionais",
               notesLabel: "",
-              
+
               daily: "Dias",
               weekly: "Semanas",
               monthly: "Mêses",
