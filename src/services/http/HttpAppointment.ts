@@ -21,7 +21,6 @@ class AppointmentService {
         throw error;
       }
     }
-  
     async GET() {
       try {
         const response = await this.api.get('/');
@@ -31,7 +30,6 @@ class AppointmentService {
         throw error;
       }
     }
-  
     async UPDATE(appointment: AppointmentModel) {
       try {
         const response = await this.api.put(`/`, appointment);

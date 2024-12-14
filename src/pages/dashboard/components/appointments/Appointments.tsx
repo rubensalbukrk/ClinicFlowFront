@@ -115,11 +115,14 @@ class FormAppointments extends React.PureComponent {
   }) => {
   
     const handleCommitChanges = async () => {
-      if (!this.state.addedAppointment.id) {
+      const newAppointment = this.state.addedAppointment
+
+      if (("startDate" in newAppointment && "endDate" in newAppointment && "title" in newAppointment)) {
         await appointmentService
         .CREATE(this.state.addedAppointment)
         .finally(() => onCommitButtonClick())
       }
+      
       if(this.state.editingAppointment.id){
         const appointUpdated = {
           ...this.state.editingAppointment,
