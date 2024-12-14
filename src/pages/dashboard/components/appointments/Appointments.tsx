@@ -5,7 +5,7 @@ import {
   EditingState,
   AppointmentModel,
   ChangeSet,
-  IntegratedEditing
+  IntegratedEditing,
 } from "@devexpress/dx-react-scheduler";
 import {
   Scheduler,
@@ -24,6 +24,11 @@ import {
 } from "@devexpress/dx-react-scheduler-material-ui";
 import { Box, Button, TextField } from "@mui/material";
 import AppointmentService from "src/services/http/HttpAppointment";
+import colors from "tailwindcss/colors";
+import { TiEdit } from "react-icons/ti";
+import { RiDeleteBin5Line } from "react-icons/ri";
+import { RiCloseCircleLine } from "react-icons/ri";
+import { BiSolidSave } from "react-icons/bi";
 
 const appointmentService = new AppointmentService();
 
@@ -47,6 +52,51 @@ const CustomTextEditComponent = (props: any) => {
   }
   return <AppointmentForm.TextEditor {...props} />;
 };
+
+const Header = ({
+  appointmentData,
+  onHide,
+  onOpenButtonClick,
+  onDeleteButtonClick,
+}: any) => (
+  <Box
+    sx={{
+      display: 'flex',
+      justifyContent: 'end',
+      width: "100%",
+      p: 0.5,
+      py: 0.7,
+      gap: 2,
+      bgcolor: colors.green[500],
+    }}
+  >
+    <Box sx={{display: 'absolute', width: '80%'}}>
+    <Button
+      onClick={onHide}
+    >
+      <RiCloseCircleLine size={22} />
+    </Button>
+    </Box>
+    <Button
+      variant="outlined"
+      onClick={() => {
+        onDeleteButtonClick();
+        appointmentService.DELETE(appointmentData?.id);
+      }}
+    >
+      <RiDeleteBin5Line size={22} />
+    </Button>
+    <Button
+      variant="outlined"
+      onClick={() => {
+        onHide();
+        onOpenButtonClick();
+      }}
+    >
+      <TiEdit size={22} />
+    </Button>
+  </Box>
+);
 
 class FormAppointments extends React.PureComponent {
   state: {
@@ -99,7 +149,7 @@ class FormAppointments extends React.PureComponent {
       }
       if (deleted !== undefined) {
         data = data.filter(
-          (appointment: AppointmentModel) => appointment.id !== deleted
+          (appointment: AppointmentModel) => appointment?.id !== deleted
         );
       }
       return { data };
@@ -110,68 +160,73 @@ class FormAppointments extends React.PureComponent {
     onCommitButtonClick,
     onCancelButtonClick,
   }: {
-    onCommitButtonClick: () => void
-    onCancelButtonClick: () => void
+    onCommitButtonClick: () => void;
+    onCancelButtonClick: () => void;
   }) => {
-  
     const handleCommitChanges = async () => {
-      const newAppointment = this.state.addedAppointment
+      const newAppointment = this.state.addedAppointment;
 
-      if (("startDate" in newAppointment && "endDate" in newAppointment && "title" in newAppointment)) {
+      if (
+        "startDate" in newAppointment &&
+        "endDate" in newAppointment &&
+        "title" in newAppointment
+      ) {
         await appointmentService
-        .CREATE(this.state.addedAppointment)
-        .finally(() => onCommitButtonClick())
+          .CREATE(this.state.addedAppointment)
+          .finally(() => onCommitButtonClick());
       }
-      
-      if(this.state.editingAppointment.id){
+
+      if (this.state.editingAppointment.id) {
         const appointUpdated = {
           ...this.state.editingAppointment,
           ...this.state.appointmentChanges,
-        }
+        };
         await appointmentService
-        .UPDATE(appointUpdated)
-        .finally(() => onCommitButtonClick())
+          .UPDATE(appointUpdated)
+          .finally(() => onCommitButtonClick());
       }
-    }
-  
+    };
+
     return (
       <Box
-      sx={{
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        p: 2,
-        bgcolor: "green",
-        borderTopLeftRadius: 10,
-        borderBottomLeftRadius: 10,
-      }}
-    >
-      <Button
         sx={{
-          color: "white",
-          ":hover": { color: "black" },
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          p: 2,
+          bgcolor: colors.green[500],
+          borderTopLeftRadius: 10,
+          borderBottomLeftRadius: 10,
         }}
-        variant="outlined"
-        onClick={onCancelButtonClick}
       >
-        X
-      </Button>
-      <Button
-        sx={{
-          color: "white",
-          ":hover": {
-            color: "black",
-          },
-        }}
-        className="hover:text-black"
-        variant="outlined"
-        onClick={handleCommitChanges}
-      >
-        SALVAR
-      </Button>
-    </Box>
-    )
+        <Button
+          sx={{
+            color: "white",
+            ":hover": { color: "black" },
+          }}
+          onClick={onCancelButtonClick}
+        >
+          <RiCloseCircleLine size={28} />
+        </Button>
+        <Button
+          sx={{
+            color: "white",
+            ":hover": {
+              color: "black",
+            },
+            fontWeight: 400,
+            gap: 1
+          }}
+          variant="outlined"
+          className="hover:text-black"
+          
+          onClick={handleCommitChanges}
+        >
+         <BiSolidSave size={24} /> SALVAR
+        </Button>
+      </Box>
+    );
   };
 
   render() {
@@ -221,14 +276,18 @@ class FormAppointments extends React.PureComponent {
               cancelButton: "Cancelar",
             }}
           />
+
           <Appointments />
-          <AppointmentTooltip showOpenButton showDeleteButton showCloseButton />
+          <AppointmentTooltip
+            showOpenButton
+            showDeleteButton
+            showCloseButton
+            headerComponent={(props) => <Header {...props} />}
+          />
           <AppointmentForm
             commandLayoutComponent={(props: any) => (
-              <this.CustomHeaderButtomLayout
-                {...props}
-              />
-              )}
+              <this.CustomHeaderButtomLayout {...props} />
+            )}
             textEditorComponent={CustomTextEditComponent}
             messages={{
               titleLabel: "Ex. Limpeza",
@@ -266,6 +325,7 @@ class FormAppointments extends React.PureComponent {
               yearsLabel: "Ano(s)",
             }}
           />
+
           <Toolbar />
           <ViewSwitcher
             switcherComponent={(props) => (
