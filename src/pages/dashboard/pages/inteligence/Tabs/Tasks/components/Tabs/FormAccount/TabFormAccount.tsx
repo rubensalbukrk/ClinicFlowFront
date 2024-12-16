@@ -2,12 +2,12 @@ import * as React from 'react';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
-import AppBar from '@mui/material/AppBar';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import { TabPanelProps } from 'dashboard/types/TabPanels';
 import { FormReceive } from './Tabs/FormReceive/FormReceive';
 import { FormPayable } from './Tabs/FormPayable/FormPayable';
+import { ContainerBase } from 'src/pages/dashboard/components/ContainerBase/ContainerBase';
 
 const TabPanel: React.FC<TabPanelProps> = (props) => {
   const { children, value, index, ...other } = props;
@@ -47,20 +47,8 @@ function TabFormAccount() {
   };
 
   return (
-    <Box sx={{ borderRadius: 1,
-     bgcolor: 'background.paper', 
-     width: '100%',
-     minWidth: 320,
-     }}
+    <ContainerBase title='CONTAS'
      >
-      <AppBar className='rounded-lg' sx={{opacity: 1}} position="static">
-      <Typography
-              fontSize={20}
-              className="rounded-t-lg"
-              sx={{width: '100%', p: 2, display: "flex", selfCenter: "start" }}
-            >
-              CONTAS
-            </Typography>
         <Tabs
         className='rounded-md px-2'
           value={value}
@@ -74,14 +62,14 @@ function TabFormAccount() {
           <Tab label="A RECEBER" sx={{width: 'auto'}} {...a11yProps(0)} />
           <Tab label="A PAGAR" {...a11yProps(1)} />
         </Tabs>
-      </AppBar>
+     
       <TabPanel value={value} index={0} dir={theme.direction}>
         <FormReceive />
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
         <FormPayable />
       </TabPanel>
-    </Box>
+    </ContainerBase>
   );
 }
 

@@ -29,6 +29,7 @@ import { TiEdit } from "react-icons/ti";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { BiSolidSave } from "react-icons/bi";
+import { colorSchemes } from "../shared-theme/themePrimitives";
 
 const appointmentService = new AppointmentService();
 
@@ -52,6 +53,21 @@ const CustomTextEditComponent = (props: any) => {
   }
   return <AppointmentForm.TextEditor {...props} />;
 };
+
+const CustomAppointmentComponent = ({children, style, ...restProps}: any) => (
+  <Appointments.Appointment
+    {...restProps}
+    style={{
+      ...style,
+      backgroundColor: colorSchemes.light.palette.primary.main,
+      borderRadius: '8px',
+      fontSize: 14,
+      textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)'
+    }}
+  >
+    {children}
+  </Appointments.Appointment>
+)
 
 const Header = ({
   appointmentData,
@@ -277,7 +293,9 @@ class FormAppointments extends React.PureComponent {
             }}
           />
 
-          <Appointments />
+          <Appointments
+            appointmentComponent={CustomAppointmentComponent}
+          />
           <AppointmentTooltip
             showOpenButton
             showDeleteButton

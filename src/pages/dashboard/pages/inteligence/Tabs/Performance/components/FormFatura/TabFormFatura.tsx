@@ -2,11 +2,11 @@ import * as React from 'react';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
-import AppBar from '@mui/material/AppBar';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import { TabPanelProps } from 'dashboard/types/TabPanels';
 import { FormProfessionals } from './Tabs/Professionals/FormProfressionals';
+import { ContainerBase } from 'src/pages/dashboard/components/ContainerBase/ContainerBase';
 
 const TabPanel: React.FC<TabPanelProps> = (props) => {
   const { children, value, index, ...other } = props;
@@ -47,18 +47,8 @@ function TabFormFatura() {
   };
 
   return (
-    <Box sx={{ width: '100%', borderRadius: 1,
-     bgcolor: 'background.paper', 
-     }}
+    <ContainerBase title="FATURAMENTOS"
      >
-      <AppBar className='rounded-lg' sx={{opacity: 1}} position="static">
-      <Typography
-              fontSize={20}
-              className="rounded-t-lg"
-              sx={{width: '100%', p: 2, display: "flex", selfCenter: "start" }}
-            >
-              FATURAMENTO
-            </Typography>
         <Tabs
         className='rounded-md px-2'
           value={value}
@@ -72,14 +62,13 @@ function TabFormFatura() {
           <Tab label="PROFISSIONAIS" sx={{width: 'auto'}} {...a11yProps(0)} />
           <Tab label="PLANOS" {...a11yProps(1)} />
         </Tabs>
-      </AppBar>
       <TabPanel value={value} index={0} dir={theme.direction}>
         <FormProfessionals />
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
        2
       </TabPanel>
-    </Box>
+    </ContainerBase>
   );
 }
 

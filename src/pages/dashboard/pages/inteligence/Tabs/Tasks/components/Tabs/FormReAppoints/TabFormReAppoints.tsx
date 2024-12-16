@@ -2,12 +2,12 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
-import AppBar from '@mui/material/AppBar';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import { TabPanelProps } from 'dashboard/types/TabPanels';
 import { FormCanceled } from './Tabs/FormCanceled/FormCanceled';
 import { FormReturns } from './Tabs/FormReturns/FormReturns';
+import { ContainerBase } from 'src/pages/dashboard/components/ContainerBase/ContainerBase';
 
 const TabPanel: React.FC<TabPanelProps> = (props) => {
   const { children, value, index, ...other } = props;
@@ -48,19 +48,8 @@ function FormAppointsTab() {
   };
 
   return (
-    <Box sx={{ 
-      bgcolor: 'background.paper', 
-      borderRadius: 1,
-      width: '100%' }}
+    <ContainerBase title='CONSULTAS A REAGENDAR'
       >
-      <AppBar className='rounded-lg' position="static">
-      <Typography
-              fontSize={20}
-              className="rounded-t-lg"
-              sx={{width: '100%', p: 2, display: "flex", selfCenter: "start" }}
-            >
-              CONSULTAS A REAGENDAR
-            </Typography>
         <Tabs
         className='rounded-lg px-2'
           value={value}
@@ -73,7 +62,6 @@ function FormAppointsTab() {
           <Tab label="CANCELADAS" {...a11yProps(0)} />
           <Tab label="ALERTAS DE RETORNO" {...a11yProps(1)} />
         </Tabs>
-      </AppBar>
 
       <TabPanel value={value} index={0} dir={theme.direction}>
       <FormCanceled />
@@ -82,7 +70,7 @@ function FormAppointsTab() {
       <TabPanel value={value} index={1} dir={theme.direction}>
         <FormReturns />
       </TabPanel>
-    </Box>
+    </ContainerBase>
   );
 }
 

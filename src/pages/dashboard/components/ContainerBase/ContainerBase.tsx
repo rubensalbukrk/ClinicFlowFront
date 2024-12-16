@@ -18,6 +18,7 @@ const ContainerBase: React.FC<ContainerProps> = (props) => {
               width: "100%",
               minWidth: 300,
               alignItems: "start",
+        
               borderRadius: 1,
                bgcolor: 'background.paper'
             }}
@@ -32,6 +33,9 @@ const ContainerBase: React.FC<ContainerProps> = (props) => {
             >
               <Typography
               fontSize={20}
+              style={{
+                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)'
+              }}
               className="rounded-t-lg"
               sx={{width: '100%', display: "flex", selfCenter: "start" }}
             >
