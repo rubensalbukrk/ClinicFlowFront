@@ -27,6 +27,7 @@ import AppointmentService from "src/services/http/HttpAppointment";
 import { CustomAppointmentComponent } from "./components/AppointmentComponent";
 import { CustomToolTipHeader } from "./components/CustomToolTipHeader";
 import { CustomFormHeaderButtomLayout } from "./components/CustomFormHeaderButtonLayout";
+import { CustomToolTipContent } from "./components/CustomToolTipContent";
 
 const appointmentService = new AppointmentService();
 
@@ -162,10 +163,12 @@ class FormAppointments extends React.PureComponent {
           />
 
           <Appointments appointmentComponent={CustomAppointmentComponent} />
+          
           <AppointmentTooltip
             showOpenButton
             showDeleteButton
             showCloseButton
+            contentComponent={CustomToolTipContent}
             headerComponent={(props) => <CustomToolTipHeader {...props} />}
           />
           <AppointmentForm
