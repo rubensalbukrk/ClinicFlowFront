@@ -38,36 +38,20 @@ const appointments: Array<AppointmentModel> = await appointmentService.GET();
 const date = new Date();
 const formattedDate = date.toISOString().split("T")[0];
 
-const CustomTextEditComponent = (props: any) => {
-  if (props.type === "multilineTextEditor") {
-    return (
-      <TextField
-        label="Observações"
-        multiline
-        rows={10}
-        fullWidth
-        variant="filled"
-        {...props}
-      />
-    );
-  }
-  return <AppointmentForm.TextEditor {...props} />;
-};
-
-const CustomAppointmentComponent = ({children, style, ...restProps}: any) => (
+const CustomAppointmentComponent = ({ children, style, ...restProps }: any) => (
   <Appointments.Appointment
     {...restProps}
     style={{
       ...style,
       backgroundColor: colorSchemes.light.palette.primary.main,
-      borderRadius: '8px',
+      borderRadius: "8px",
       fontSize: 14,
-      textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)'
+      textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)",
     }}
   >
     {children}
   </Appointments.Appointment>
-)
+);
 
 const Header = ({
   appointmentData,
@@ -77,8 +61,8 @@ const Header = ({
 }: any) => (
   <Box
     sx={{
-      display: 'flex',
-      justifyContent: 'end',
+      display: "flex",
+      justifyContent: "end",
       width: "100%",
       p: 0.5,
       py: 0.7,
@@ -86,12 +70,10 @@ const Header = ({
       bgcolor: colors.green[500],
     }}
   >
-    <Box sx={{display: 'absolute', width: '80%'}}>
-    <Button
-      onClick={onHide}
-    >
-      <RiCloseCircleLine size={22} />
-    </Button>
+    <Box sx={{ display: "absolute", width: "80%" }}>
+      <Button onClick={onHide}>
+        <RiCloseCircleLine size={22} />
+      </Button>
     </Box>
     <Button
       variant="outlined"
@@ -128,7 +110,7 @@ class FormAppointments extends React.PureComponent {
       data: appointments,
       addedAppointment: {},
       appointmentChanges: {},
-      editingAppointment: undefined,
+      editingAppointment: {},
     };
 
     this.commitChanges = this.commitChanges.bind(this);
@@ -232,17 +214,35 @@ class FormAppointments extends React.PureComponent {
               color: "black",
             },
             fontWeight: 400,
-            gap: 1
+            gap: 1,
           }}
           variant="outlined"
           className="hover:text-black"
-          
           onClick={handleCommitChanges}
         >
-         <BiSolidSave size={24} /> SALVAR
+          <BiSolidSave size={24} /> SALVAR
         </Button>
       </Box>
     );
+  };
+
+  CustomTextEditComponent = ({ appointmentData, type, ...restProps }: any) => {
+    if (type === "multilineTextEditor") {
+      return (
+        <TextField
+          label="Observações"
+          multiline
+          rows={10}
+          fullWidth
+          value={appointmentData?.notes || ""}
+          onChange={(value) => this.changeEditingAppointment({...this.state.editingAppointment, notes: value.target.value})}
+          variant="filled"
+          {...restProps}
+        />
+      );
+    }
+  
+    return <AppointmentForm.TextEditor {...restProps} />
   };
 
   render() {
@@ -293,9 +293,7 @@ class FormAppointments extends React.PureComponent {
             }}
           />
 
-          <Appointments
-            appointmentComponent={CustomAppointmentComponent}
-          />
+          <Appointments appointmentComponent={CustomAppointmentComponent} />
           <AppointmentTooltip
             showOpenButton
             showDeleteButton
@@ -303,10 +301,11 @@ class FormAppointments extends React.PureComponent {
             headerComponent={(props) => <Header {...props} />}
           />
           <AppointmentForm
+            appointmentData={this.state.editingAppointment}
             commandLayoutComponent={(props: any) => (
               <this.CustomHeaderButtomLayout {...props} />
             )}
-            textEditorComponent={CustomTextEditComponent}
+            textEditorComponent={this.CustomTextEditComponent}
             messages={{
               titleLabel: "Ex. Limpeza",
               detailsLabel: "Detalhes de agendamento",
