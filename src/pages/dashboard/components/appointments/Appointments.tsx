@@ -28,6 +28,7 @@ import { CustomAppointmentComponent } from "./components/AppointmentComponent";
 import { CustomToolTipHeader } from "./components/CustomToolTipHeader";
 import { CustomFormHeaderButtomLayout } from "./components/CustomFormHeaderButtonLayout";
 import { CustomToolTipContent } from "./components/CustomToolTipContent";
+import { CustomBasicLayoutComponent } from "./components/CustomBasicLayout/CustomBasicLayoutComponent";
 
 const appointmentService = new AppointmentService();
 
@@ -35,7 +36,6 @@ const appointments: Array<AppointmentModel> = await appointmentService.GET();
 
 const date = new Date();
 const formattedDate = date.toISOString().split("T")[0];
-
 
 class FormAppointments extends React.PureComponent {
   state: {
@@ -99,19 +99,25 @@ class FormAppointments extends React.PureComponent {
     if (type === "multilineTextEditor") {
       return (
         <TextField
-          label="Observações"
+          label="OBSERVAÇÃO"
           multiline
-          rows={10}
+          rows={1}
           fullWidth
+          size="small"
           value={appointmentData?.notes || ""}
-          onChange={(value) => this.changeEditingAppointment({...this.state.editingAppointment, notes: value.target.value})}
-          variant="filled"
+          onChange={(value) =>
+            this.changeEditingAppointment({
+              ...this.state.editingAppointment,
+              notes: value.target.value,
+            })
+          }
+          variant="outlined"
           {...restProps}
         />
       );
     }
-  
-    return <AppointmentForm.TextEditor {...restProps} />
+
+    return <AppointmentForm.TextEditor {...restProps} />;
   };
 
   render() {
@@ -163,7 +169,7 @@ class FormAppointments extends React.PureComponent {
           />
 
           <Appointments appointmentComponent={CustomAppointmentComponent} />
-          
+
           <AppointmentTooltip
             showOpenButton
             showDeleteButton
@@ -171,15 +177,17 @@ class FormAppointments extends React.PureComponent {
             contentComponent={CustomToolTipContent}
             headerComponent={(props) => <CustomToolTipHeader {...props} />}
           />
+
           <AppointmentForm
             appointmentData={this.state.editingAppointment}
             commandLayoutComponent={(props: any) => (
               <CustomFormHeaderButtomLayout {...props} state={this.state} />
             )}
+            basicLayoutComponent={CustomBasicLayoutComponent}
             textEditorComponent={this.CustomTextEditComponent}
             messages={{
               titleLabel: "Ex. Limpeza",
-              detailsLabel: "Detalhes de agendamento",
+              detailsLabel: "",
               allDayLabel: "Todos os dias",
               repeatLabel: "Repetir",
               moreInformationLabel: "Informações adicionais",
