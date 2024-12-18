@@ -22,13 +22,17 @@ import {
   MonthView,
   DateNavigator,
 } from "@devexpress/dx-react-scheduler-material-ui";
-import { TextField } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import AppointmentService from "src/services/http/HttpAppointment";
 import { CustomAppointmentComponent } from "./components/AppointmentComponent";
 import { CustomToolTipHeader } from "./components/CustomToolTipHeader";
 import { CustomFormHeaderButtomLayout } from "./components/CustomFormHeaderButtonLayout";
 import { CustomToolTipContent } from "./components/CustomToolTipContent";
-import { CustomBasicLayoutComponent } from "./components/CustomBasicLayout/CustomBasicLayoutComponent";
+import { IPacientsComplete } from "./components/CustomBasicLayout/types/pacient";
+import { IProfessionalsComplete } from "./components/CustomBasicLayout/types/professional";
+import { InputAutoComplete } from "./components/CustomBasicLayout/components/InputAutoComplete";
+import { PROFESSIONALS_DATA } from "./components/CustomBasicLayout/http/allProfessionals";
+import { PACIENTS_DATA } from "./components/CustomBasicLayout/http/allPacients";
 
 const appointmentService = new AppointmentService();
 
@@ -51,13 +55,15 @@ class FormAppointments extends React.PureComponent {
       data: appointments,
       addedAppointment: {},
       appointmentChanges: {},
-      editingAppointment: {},
+      editingAppointment: {}
     };
 
     this.commitChanges = this.commitChanges.bind(this);
     this.changeAddedAppointment = this.changeAddedAppointment.bind(this);
     this.changeAppointmentChanges = this.changeAppointmentChanges.bind(this);
     this.changeEditingAppointment = this.changeEditingAppointment.bind(this);
+    this.handleSelectPacient = this.handleSelectPacient.bind(this);
+    this.handleSelectProfessional = this.handleSelectProfessional.bind(this);
   }
   changeAddedAppointment(addedAppointment: any) {
     this.setState({ addedAppointment });
@@ -120,10 +126,70 @@ class FormAppointments extends React.PureComponent {
     return <AppointmentForm.TextEditor {...restProps} />;
   };
 
+  handleSelectProfessional = (selectedItem: IProfessionalsComplete) => {
+    this.setState({
+      editingAppointment: {
+        ...this.state.editingAppointment,
+        professionalId: selectedItem.professionalId,
+        professionalName: selectedItem.name
+      },
+      addedAppointment: {
+        ...this.state.addedAppointment,
+        professionalId: selectedItem.professionalId,
+        professionalName: selectedItem.name
+      }
+    });
+  };
+
+  handleSelectPacient = (selectedItem: IPacientsComplete) => {
+    this.setState({
+      editingAppointment: {
+        ...this.state.editingAppointment,
+        pacientId: selectedItem.pacientId,
+        pacientName: selectedItem.name
+      },
+      addedAppointment: {
+        ...this.state.addedAppointment,
+        pacientId: selectedItem.pacientId,
+        pacientName: selectedItem.name
+      }
+    });
+  }
+
+  CustomBasicLayoutComponent = (props: any) => {
+    return (
+      <Box>
+        <Box
+          display="flex"
+          flexDirection="row"
+          flexWrap="wrap"
+          px={4}
+          pt={4}
+          gap={2}
+        >
+          <InputAutoComplete 
+          value={this.state.editingAppointment?.professionalName} 
+          onSelect={this.handleSelectProfessional} 
+          data={PROFESSIONALS_DATA} 
+          label="PROFISSIONAL" />
+
+          <InputAutoComplete 
+          value={this.state.editingAppointment?.pacientName} 
+          onSelect={this.handleSelectPacient} 
+          data={PACIENTS_DATA} 
+          label="PACIENTES" />
+        </Box>
+        <AppointmentForm.BasicLayout {...props}>
+          <Box>{props.children}</Box>
+        </AppointmentForm.BasicLayout>
+      </Box>
+    );
+  };
+
   render() {
     const { data, addedAppointment, appointmentChanges, editingAppointment } =
       this.state;
-
+  
     return (
       <Paper>
         <Scheduler locale="pt-BR" data={data}>
@@ -137,6 +203,7 @@ class FormAppointments extends React.PureComponent {
             onAppointmentChangesChange={this.changeAppointmentChanges}
             editingAppointment={editingAppointment}
             onEditingAppointmentChange={this.changeEditingAppointment}
+
           />
           <WeekView startDayHour={8} endDayHour={17} />
           <MonthView />
@@ -183,7 +250,9 @@ class FormAppointments extends React.PureComponent {
             commandLayoutComponent={(props: any) => (
               <CustomFormHeaderButtomLayout {...props} state={this.state} />
             )}
-            basicLayoutComponent={CustomBasicLayoutComponent}
+
+            basicLayoutComponent={this.CustomBasicLayoutComponent} // Passa diretamente o componente
+            
             textEditorComponent={this.CustomTextEditComponent}
             messages={{
               titleLabel: "Ex. Limpeza",

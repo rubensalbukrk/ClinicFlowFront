@@ -1,13 +1,20 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Autocomplete, TextField } from "@mui/material";
 import {IPacientsComplete} from '../types/pacient'
 import {InputAutoCompleteProps} from '../types/autocomplete'
 import {IProfessionalsComplete} from '../types/professional'
 
-const InputAutoComplete: React.FC<InputAutoCompleteProps<IProfessionalsComplete | IPacientsComplete>> = ({data, label}) => {
-    const [inputValue, setInputValue] = useState('');
+const InputAutoComplete: React.FC<InputAutoCompleteProps<IProfessionalsComplete | IPacientsComplete>> = ({data, value, label, onSelect}) => {
+    const [inputValue, setInputValue] = useState(value);
     const [selectedItem, setSelectedItem] = useState<IPacientsComplete | IProfessionalsComplete>({} as IPacientsComplete | IProfessionalsComplete);
    
+    const handleChange = (_event: any, newValue: any) => {
+      if (newValue && typeof newValue !== 'string') {
+        setSelectedItem(newValue);
+        onSelect(newValue);
+      }
+    }
+
     return (
       <Autocomplete
         fullWidth
@@ -20,11 +27,7 @@ const InputAutoComplete: React.FC<InputAutoCompleteProps<IProfessionalsComplete 
         onInputChange={(_event, newInputValue) => {
           setInputValue(newInputValue); // Atualiza o valor ao digitar
         }}
-        onChange={(_event, newValue) => {
-          if (newValue && typeof newValue !== 'string') {
-            setSelectedItem(newValue); // Atualiza se newValue for um objeto Professional
-          }
-        }}
+        onChange={handleChange}
         renderInput={(params) => (
           <TextField
             {...params}
