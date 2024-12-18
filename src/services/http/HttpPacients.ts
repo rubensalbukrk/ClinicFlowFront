@@ -3,7 +3,7 @@ import { API } from '../api'
 import {IPacient} from 'src/interfaces/pacient'
 
 interface FetchDataPacients {
-  Pacients: IPacient[]
+  Pacients: Pick<IPacient, 'pacientId' | 'name'>[]
 }
 
 class PacientService {

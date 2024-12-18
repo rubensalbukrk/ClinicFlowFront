@@ -1,6 +1,6 @@
 interface IPacient {
     pacientId: string
-    pacientName: string
+    name: string
     age: number
     gender: "Homem" | "Mulher" | "Outro"
     email: string
@@ -10,23 +10,23 @@ interface IPacient {
       street: string
     };
     status: "active" | "inactive" | "inTreatment";
-    medicalHistory: {
+    medicalHistory?: {
       allergies?: string[]
       conditions?: string[]
       medications?: string[]
       observations?: string
     };
-    appointmentsHistory: {
+    appointmentsHistory?: {
       appointmentId: string;
       date: Date;
       observations?: string;
     }[];
-    healthPlan: {
+    healthPlan?: {
       provider: string;
       planType: string;
       expirationDate: Date;
     };
-    treatments: {
+    treatments?: {
       treatmentsId: string;
       title: string;
       description?: string;

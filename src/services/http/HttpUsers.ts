@@ -3,7 +3,7 @@ import { API } from '../api'
 import {IUser} from 'src/interfaces/user'
 
 interface FetchDataUsers {
-  Users: IUser[]
+  Users: Pick<IUser, 'professionalId' | 'name'>[]
 }
 
 class UserService {

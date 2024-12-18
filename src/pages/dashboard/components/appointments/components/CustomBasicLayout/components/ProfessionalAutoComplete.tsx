@@ -1,25 +1,13 @@
-import { Autocomplete, TextField } from "@mui/material";
 import { useState } from "react";
-
-interface IProfessionalsComplete {
-    professionalId: string
-    name: string
-}
-
-interface IPacientsComplete {
-    pacientId: string
-    name: string
-}
-
-interface InputAutoCompleteProps<T> {
-    data: T[]
-    label: string
-}
+import { Autocomplete, TextField } from "@mui/material";
+import {IPacientsComplete} from '../types/pacient'
+import {InputAutoCompleteProps} from '../types/autocomplete'
+import {IProfessionalsComplete} from '../types/professional'
 
 const InputAutoComplete: React.FC<InputAutoCompleteProps<IProfessionalsComplete | IPacientsComplete>> = ({data, label}) => {
     const [inputValue, setInputValue] = useState('');
-    const [selectedItem, setSelectedItem] = useState({});
-  
+    const [selectedItem, setSelectedItem] = useState<IPacientsComplete | IProfessionalsComplete>({} as IPacientsComplete | IProfessionalsComplete);
+   
     return (
       <Autocomplete
         fullWidth
@@ -36,7 +24,6 @@ const InputAutoComplete: React.FC<InputAutoCompleteProps<IProfessionalsComplete 
           if (newValue && typeof newValue !== 'string') {
             setSelectedItem(newValue); // Atualiza se newValue for um objeto Professional
           }
-          console.log('Usuário selecionado:', newValue);
         }}
         renderInput={(params) => (
           <TextField

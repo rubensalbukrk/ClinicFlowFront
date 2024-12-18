@@ -1,4 +1,3 @@
-import UserService from "src/services/http/HttpUsers";
 import { Box } from "@mui/material";
 import { AppointmentForm } from "@devexpress/dx-react-scheduler-material-ui";
 import { InputAutoComplete } from "./components/ProfessionalAutoComplete";
