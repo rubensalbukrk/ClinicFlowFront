@@ -44,6 +44,8 @@ const formattedDate = date.toISOString().split("T")[0];
 class FormAppointments extends React.PureComponent {
   state: {
     data: AppointmentModel[];
+    professional: any;
+    pacient: any;
     addedAppointment: any;
     appointmentChanges: any;
     editingAppointment: any;
@@ -53,6 +55,8 @@ class FormAppointments extends React.PureComponent {
     super(props);
     this.state = {
       data: appointments,
+      professional: {},
+      pacient: {},
       addedAppointment: {},
       appointmentChanges: {},
       editingAppointment: {}
@@ -74,6 +78,19 @@ class FormAppointments extends React.PureComponent {
   changeEditingAppointment(editingAppointment: any) {
     this.setState({ editingAppointment });
   }
+  changeProfessional(professional: any) {
+    this.setState((prevState: any) => ({
+      ...prevState.state,
+      professional: professional
+    }));
+  }
+  changePacient(pacient: any) {
+    this.setState((prevState: any) => ({
+      ...prevState.state,
+      pacient: pacient
+    }));
+  }
+
   commitChanges({ added, changed, deleted }: ChangeSet) {
     this.setState((state: AppointmentModel) => {
       let { data }: AppointmentModel = state;
@@ -112,11 +129,14 @@ class FormAppointments extends React.PureComponent {
           size="small"
           value={appointmentData?.notes || ""}
           onChange={(value) =>
-            this.changeEditingAppointment({
-              ...this.state.editingAppointment,
+            this.setState((prevState: any) => ({
+              ...prevState.state,
+              addedAppointment: {
+                ...prevState.addedAppointment,
               notes: value.target.value,
+              }
             })
-          }
+          )}
           variant="outlined"
           {...restProps}
         />
@@ -127,39 +147,19 @@ class FormAppointments extends React.PureComponent {
   };
 
   handleSelectProfessional = (selectedItem: IProfessionalsComplete) => {
-    this.setState({
-      editingAppointment: {
-        ...this.state.editingAppointment,
-        professionalId: selectedItem.professionalId,
-        professionalName: selectedItem.name
-      },
-      addedAppointment: {
-        ...this.state.addedAppointment,
-        professionalId: selectedItem.professionalId,
-        professionalName: selectedItem.name
-      }
-    });
+    this.changeProfessional(selectedItem)
   };
 
   handleSelectPacient = (selectedItem: IPacientsComplete) => {
-    this.setState({
-      editingAppointment: {
-        ...this.state.editingAppointment,
-        pacientId: selectedItem.pacientId,
-        pacientName: selectedItem.name
-      },
-      addedAppointment: {
-        ...this.state.addedAppointment,
-        pacientId: selectedItem.pacientId,
-        pacientName: selectedItem.name
-      }
-    });
+    this.changePacient(selectedItem)
   }
 
   CustomBasicLayoutComponent = (props: any) => {
     return (
       <Box>
-        <Box
+        <AppointmentForm.BasicLayout {...props}>
+          <Box>
+          <Box
           display="flex"
           flexDirection="row"
           flexWrap="wrap"
@@ -178,9 +178,9 @@ class FormAppointments extends React.PureComponent {
           onSelect={this.handleSelectPacient} 
           data={PACIENTS_DATA} 
           label="PACIENTES" />
+          {props.children}
         </Box>
-        <AppointmentForm.BasicLayout {...props}>
-          <Box>{props.children}</Box>
+          </Box>
         </AppointmentForm.BasicLayout>
       </Box>
     );

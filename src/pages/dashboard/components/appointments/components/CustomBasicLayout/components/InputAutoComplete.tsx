@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { Autocomplete, TextField } from "@mui/material";
 import {IPacientsComplete} from '../types/pacient'
 import {InputAutoCompleteProps} from '../types/autocomplete'
@@ -24,9 +24,6 @@ const InputAutoComplete: React.FC<InputAutoCompleteProps<IProfessionalsComplete 
           typeof option === 'string' ? option : option.name // Verifique se é string ou objeto
         }
         inputValue={inputValue}
-        onInputChange={(_event, newInputValue) => {
-          setInputValue(newInputValue); // Atualiza o valor ao digitar
-        }}
         onChange={handleChange}
         renderInput={(params) => (
           <TextField

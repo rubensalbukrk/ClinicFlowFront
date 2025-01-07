@@ -15,20 +15,25 @@ const CustomFormHeaderButtomLayout = ({
     state: any
   }) => {
     const handleCommitChanges = async () => {
-      const newAppointment = state.addedAppointment;
+      const newAppointment = {
+        ...state.addedAppointment,
+        ...state.professional,
+        ...state.pacient,
+      }
 
       if (
         "startDate" in newAppointment &&
-        "endDate" in newAppointment &&
-        "title" in newAppointment
+        "endDate" in newAppointment
       ) {
         await appointmentService
-          .CREATE(state.addedAppointment)
+          .CREATE(newAppointment)
           .finally(() => onCommitButtonClick());
       }
 
       if (state.editingAppointment.id) {
         const appointUpdated = {
+          ...state.professional,
+          ...state.pacient,
           ...state.editingAppointment,
           ...state.appointmentChanges,
         };
