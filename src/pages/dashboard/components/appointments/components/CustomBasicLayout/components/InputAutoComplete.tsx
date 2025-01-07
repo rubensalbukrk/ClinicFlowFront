@@ -5,12 +5,10 @@ import {InputAutoCompleteProps} from '../types/autocomplete'
 import {IProfessionalsComplete} from '../types/professional'
 
 const InputAutoComplete: React.FC<InputAutoCompleteProps<IProfessionalsComplete | IPacientsComplete>> = ({data, value, label, onSelect}) => {
-    const [inputValue, setInputValue] = useState(value);
-    const [selectedItem, setSelectedItem] = useState<IPacientsComplete | IProfessionalsComplete>({} as IPacientsComplete | IProfessionalsComplete);
-   
+    const [inputValue] = useState(value);
+    
     const handleChange = (_event: any, newValue: any) => {
       if (newValue && typeof newValue !== 'string') {
-        setSelectedItem(newValue);
         onSelect(newValue);
       }
     }
