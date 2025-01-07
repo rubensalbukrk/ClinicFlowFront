@@ -5,11 +5,13 @@ import {InputAutoCompleteProps} from '../types/autocomplete'
 import {IProfessionalsComplete} from '../types/professional'
 
 const InputAutoComplete: React.FC<InputAutoCompleteProps<IProfessionalsComplete | IPacientsComplete>> = ({data, value, label, onSelect}) => {
-    const [inputValue] = useState(value);
-    
+    const [inputValue, setInputValue] = useState(value);
+    const [selectedItem, setSelectedItem] = useState<IPacientsComplete | IProfessionalsComplete>({} as IPacientsComplete | IProfessionalsComplete);
+   
     const handleChange = (_event: any, newValue: any) => {
       if (newValue && typeof newValue !== 'string') {
-        onSelect(newValue);
+        setSelectedItem(newValue);
+        onSelect(selectedItem);
       }
     }
 
@@ -22,6 +24,7 @@ const InputAutoComplete: React.FC<InputAutoCompleteProps<IProfessionalsComplete 
           typeof option === 'string' ? option : option.name // Verifique se é string ou objeto
         }
         inputValue={inputValue}
+        onInputChange={(value) => setInputValue(value)}
         onChange={handleChange}
         renderInput={(params) => (
           <TextField
